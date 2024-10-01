@@ -41,7 +41,7 @@ public class RequestRepository implements IRequestRepository {
     }
 
     @Override
-    public List<Request> findAll(Request request) {
+    public List<Request> findAll() {
             EntityTransaction transaction = entityManager.getTransaction();
             List<Request> requests = null;
         try {
