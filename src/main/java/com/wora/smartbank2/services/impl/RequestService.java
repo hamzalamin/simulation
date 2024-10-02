@@ -1,14 +1,14 @@
 package com.wora.smartbank2.services.impl;
-import com.wora.entities.models.Request;
-import com.wora.repositories.impl.RequestRepository;
-import com.wora.service.IRequestService;
+import com.wora.smartbank2.entities.models.Request;
+import com.wora.smartbank2.repositories.IRequestRepository;
+import com.wora.smartbank2.services.IRequestService;
 
 import java.util.List;
 
 public class RequestService implements IRequestService {
-    private final RequestRepository requestRepository;
+    private final IRequestRepository requestRepository;
 
-    public RequestService(RequestRepository requestRepository) {
+    public RequestService(IRequestRepository requestRepository) {
         this.requestRepository = requestRepository;
     }
 

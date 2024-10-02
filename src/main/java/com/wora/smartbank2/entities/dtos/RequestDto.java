@@ -1,6 +1,6 @@
 package com.wora.smartbank2.entities.dtos;
 
-import com.wora.entities.enums.Civility;
+import com.wora.smartbank2.entities.enums.Civility;
 
 import java.time.LocalDate;
 

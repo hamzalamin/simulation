@@ -1,6 +1,6 @@
 package com.wora.smartbank2.services;
 
-import com.wora.entities.models.Request;
+import com.wora.smartbank2.entities.models.Request;
 
 import java.util.List;
 

@@ -1,10 +1,9 @@
 package com.wora.smartbank2.repositories.impl;
 
-import com.wora.entities.models.Request;
-import com.wora.repositories.IRequestRepository;
+import com.wora.smartbank2.entities.models.Request;
+import com.wora.smartbank2.repositories.IRequestRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import jakarta.transaction.Transaction;
 
 import java.util.List;
 

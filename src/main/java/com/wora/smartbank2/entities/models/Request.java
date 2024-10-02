@@ -1,17 +1,12 @@
 package com.wora.smartbank2.entities.models;
 
-import com.wora.entities.enums.Civility;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.wora.smartbank2.entities.enums.Civility;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "requests")
 public class Request {
@@ -33,7 +28,7 @@ public class Request {
 
     @NotBlank
     @Column(name = "loan_duration", nullable = false)
-    private Integer loanDuration;
+    private Double loanDuration;
 
     @NotBlank
     @Column(name = "monthly_payment", nullable = false)
@@ -74,4 +69,146 @@ public class Request {
     @NotBlank
     @Column(name = "has_credits", nullable = false)
     private boolean hasCredits;
+
+    public Request(long id, String projectName, String userType, Double loanAmount, Double loanDuration, Double monthlyPayment, String email, String phone, Civility civility, String fName, String lName, String cin, LocalDate birthDate, LocalDate employmentStartDate, boolean hasCredits) {
+        this.id = id;
+        this.projectName = projectName;
+        this.userType = userType;
+        this.loanAmount = loanAmount;
+        this.loanDuration = loanDuration;
+        this.monthlyPayment = monthlyPayment;
+        this.email = email;
+        this.phone = phone;
+        this.civility = civility;
+        this.fName = fName;
+        this.lName = lName;
+        this.cin = cin;
+        this.birthDate = birthDate;
+        this.employmentStartDate = employmentStartDate;
+        this.hasCredits = hasCredits;
+    }
+
+    public Request() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public @NotBlank String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(@NotBlank String projectName) {
+        this.projectName = projectName;
+    }
+
+    public @NotBlank String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(@NotBlank String userType) {
+        this.userType = userType;
+    }
+
+    public @NotBlank Double getLoanAmount() {
+        return loanAmount;
+    }
+
+    public void setLoanAmount(@NotBlank Double loanAmount) {
+        this.loanAmount = loanAmount;
+    }
+
+    public @NotBlank Double getLoanDuration() {
+        return loanDuration;
+    }
+
+    public void setLoanDuration(@NotBlank Double loanDuration) {
+        this.loanDuration = loanDuration;
+    }
+
+    public @NotBlank Double getMonthlyPayment() {
+        return monthlyPayment;
+    }
+
+    public void setMonthlyPayment(@NotBlank Double monthlyPayment) {
+        this.monthlyPayment = monthlyPayment;
+    }
+
+    public @NotBlank String getEmail() {
+        return email;
+    }
+
+    public void setEmail(@NotBlank String email) {
+        this.email = email;
+    }
+
+    public @NotBlank String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(@NotBlank String phone) {
+        this.phone = phone;
+    }
+
+    public @NotBlank Civility getCivility() {
+        return civility;
+    }
+
+    public void setCivility(@NotBlank Civility civility) {
+        this.civility = civility;
+    }
+
+    public @NotBlank String getfName() {
+        return fName;
+    }
+
+    public void setfName(@NotBlank String fName) {
+        this.fName = fName;
+    }
+
+    public @NotBlank String getlName() {
+        return lName;
+    }
+
+    public void setlName(@NotBlank String lName) {
+        this.lName = lName;
+    }
+
+    public @NotBlank String getCin() {
+        return cin;
+    }
+
+    public void setCin(@NotBlank String cin) {
+        this.cin = cin;
+    }
+
+    public @NotBlank LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(@NotBlank LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public @NotBlank LocalDate getEmploymentStartDate() {
+        return employmentStartDate;
+    }
+
+    public void setEmploymentStartDate(@NotBlank LocalDate employmentStartDate) {
+        this.employmentStartDate = employmentStartDate;
+    }
+
+    @NotBlank
+    public boolean isHasCredits() {
+        return hasCredits;
+    }
+
+    public void setHasCredits(@NotBlank boolean hasCredits) {
+        this.hasCredits = hasCredits;
+    }
 }
