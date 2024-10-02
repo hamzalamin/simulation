@@ -32,23 +32,79 @@ public class RequestController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
         if (pathInfo == null | pathInfo.equals("/")) {
-            List<Request> requests = requestService.findAll();
-            request.setAttribute("requests", requests);
-            request.getRequestDispatcher("/requests").forward(request, response);
-        }else {
-            Long id = Long.parseLong(pathInfo.substring(1));
-            Request requestObj = requestService.findById(id);
-
-            if (requestObj != null){
-                request.setAttribute("requests", requestObj);
-                request.getRequestDispatcher("/requests").forward(request, response);
-            } else {
-                response.sendError(HttpServletResponse.SC_NOT_FOUND);
-            }
+            getAllRequests(request, response);
+        } else {
+            getRequestById(request, response);
         }
     }
 
-    protected void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+
+        if (action != null) {
+            switch (action) {
+                case "create":
+                    createRequest(request, response);
+                    break;
+                case "update":
+                    updateRequest(request, response);
+                    break;
+                case "delete":
+                    deleteRequest(request, response);
+                    break;
+                default:
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid action");
+            }
+        } else {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Action parameter is missing");
+        }
+    }
+
+
+    private void getAllRequests(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Request> requests = requestService.findAll();
+        request.setAttribute("requests", requests);
+        request.getRequestDispatcher("/requests.jsp").forward(request, response);
+    }
+
+    private void getRequestById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String pathInfo = request.getPathInfo();
+        try {
+            Long id = Long.parseLong(pathInfo.substring(1));
+            Request requestObj = requestService.findById(id);
+
+            if (requestObj != null) {
+                request.setAttribute("request", requestObj);
+                request.getRequestDispatcher("/request.jsp").forward(request, response);
+            } else {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            }
+        } catch (NumberFormatException e) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid request ID");
+        }
+    }
+
+    private void createRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Request newRequest = buildRequestParams(request);
+        requestService.create(newRequest);
+        response.sendRedirect(request.getContextPath() + "/requests");
+    }
+
+    private void updateRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        Request updatedRequest = buildRequestParams(request);
+        updatedRequest.setId(id);
+        requestService.update(updatedRequest);
+        response.sendRedirect(request.getContextPath() + "/requests");
+    }
+
+    private void deleteRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        requestService.delete(id);
+        response.sendRedirect(request.getContextPath() + "/requests");
+    }
+
+    private Request buildRequestParams(HttpServletRequest request) {
         String projectName = request.getParameter("project_name");
         String userType = request.getParameter("user_type");
         Double loanAmount = Utils.getDoubleParameter(request, "loan_amount");
@@ -80,8 +136,6 @@ public class RequestController extends HttpServlet {
         newRequest.setEmploymentStartDate(localDate);
         newRequest.setHasCredits(hasCredits);
 
-        requestService.create(newRequest);
-        response.sendRedirect(request.getContextPath() + "/requests");
+        return newRequest;
     }
-
 }
