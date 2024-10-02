@@ -1,4 +1,4 @@
-package com.wora.service;
+package com.wora.smartbank2.services;
 
 import com.wora.entities.models.Request;
 

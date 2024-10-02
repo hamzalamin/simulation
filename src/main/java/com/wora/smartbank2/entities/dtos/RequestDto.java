@@ -1,4 +1,4 @@
-package com.wora.entities.dtos;
+package com.wora.smartbank2.entities.dtos;
 
 import com.wora.entities.enums.Civility;
 

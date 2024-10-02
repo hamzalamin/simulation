@@ -1,4 +1,4 @@
-package com.wora.entities.models;
+package com.wora.smartbank2.entities.models;
 
 import com.wora.entities.enums.Civility;
 import lombok.AllArgsConstructor;

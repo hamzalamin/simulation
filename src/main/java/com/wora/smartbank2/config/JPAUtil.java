@@ -1,4 +1,4 @@
-package com.wora.config;
+package com.wora.smartbank2.config;
 
 
 import javax.persistence.EntityManagerFactory;
