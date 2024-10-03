@@ -7,6 +7,9 @@ import com.wora.smartbank2.repositories.IRequestRepository;
 import com.wora.smartbank2.repositories.impl.RequestRepository;
 import com.wora.smartbank2.services.IRequestService;
 import com.wora.smartbank2.services.impl.RequestService;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -64,7 +67,7 @@ public class RequestController extends HttpServlet {
     private void getAllRequests(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Request> requests = requestService.findAll();
         request.setAttribute("requests", requests);
-        request.getRequestDispatcher("/requests.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/create.jsp").forward(request, response);
     }
 
     private void getRequestById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -75,7 +78,7 @@ public class RequestController extends HttpServlet {
 
             if (requestObj != null) {
                 request.setAttribute("request", requestObj);
-                request.getRequestDispatcher("/request.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/views/create.jsp").forward(request, response);
             } else {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
             }

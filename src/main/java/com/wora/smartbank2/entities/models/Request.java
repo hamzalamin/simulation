@@ -1,9 +1,9 @@
 package com.wora.smartbank2.entities.models;
 
 import com.wora.smartbank2.entities.enums.Civility;
+import jakarta.persistence.*;
 
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 

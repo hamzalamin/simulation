@@ -1,8 +1,8 @@
 package com.wora.smartbank2.config;
 
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 
 public class JPAUtil {
     private static EntityManagerFactory ENTITY_MANAGER_FACTORY;

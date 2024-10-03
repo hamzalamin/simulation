@@ -1,5 +1,6 @@
 package com.wora.smartbank2.repositories.impl;
 
+import com.wora.smartbank2.config.JPAUtil;
 import com.wora.smartbank2.entities.models.Request;
 import com.wora.smartbank2.repositories.IRequestRepository;
 import jakarta.persistence.EntityManager;
@@ -9,6 +10,9 @@ import java.util.List;
 
 public class RequestRepository implements IRequestRepository {
     private EntityManager entityManager;
+    public RequestRepository(){
+        this.entityManager = (EntityManager) JPAUtil.entityManagerFactory().createEntityManager();
+    }
 
     @Override
     public void create(Request request) {

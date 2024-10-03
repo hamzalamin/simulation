@@ -10,8 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b732ed7c-845c-4a95-b326-732618f01856" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/create.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/config/JPAUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/config/JPAUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/entities/models/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/entities/models/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/repositories/impl/RequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/repositories/impl/RequestRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/web/controllers/RequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/web/controllers/RequestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +29,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -59,6 +67,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;Maven.smartBank2 [clean].executor&quot;: &quot;Run&quot;,
     &quot;Maven.smartBank2 [install].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -73,7 +82,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -82,6 +91,9 @@
       <recent name="C:\Users\hamza\IdeaProjects\smartBank2\src\main\java\com\wora\smartbank2" />
       <recent name="C:\Users\hamza\IdeaProjects\smartBank2" />
       <recent name="C:\Users\hamza\IdeaProjects\smartBank2\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\hamza\IdeaProjects\smartBank2\src\main\webapp\views" />
     </key>
   </component>
   <component name="RunManager">
@@ -195,7 +207,9 @@
       <workItem from="1727828615749" duration="3000" />
       <workItem from="1727856063569" duration="2377000" />
       <workItem from="1727862571527" duration="5287000" />
-      <workItem from="1727873735625" duration="8212000" />
+      <workItem from="1727873735625" duration="12893000" />
+      <workItem from="1727941262688" duration="1708000" />
+      <workItem from="1727942986809" duration="2386000" />
     </task>
     <servers />
   </component>
