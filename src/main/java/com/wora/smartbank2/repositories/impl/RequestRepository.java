@@ -65,7 +65,8 @@ public class RequestRepository implements IRequestRepository {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
-            entityManager.remove(id);
+            Request request = entityManager.find(Request.class, id);
+            entityManager.remove(request);
             transaction.commit();
         } catch (Exception e){
             transaction.rollback();

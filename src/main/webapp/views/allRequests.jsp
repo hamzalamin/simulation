@@ -41,6 +41,11 @@
       <td>
         <a href="${pageContext.request.contextPath}/requests/${request.id}">Details</a>
         <a href="${pageContext.request.contextPath}/requests/${request.id}">Update</a>
+        <form action="${pageContext.request.contextPath}/requests" method="post">
+          <input type="hidden" value="${request.id}" name="id">
+          <input type="hidden" value="delete" name="action">
+          <button>Delete</button>
+        </form>
       </td>
     </tr>
   </c:forEach>
