@@ -7,9 +7,7 @@ import com.wora.smartbank2.repositories.IRequestRepository;
 import com.wora.smartbank2.repositories.impl.RequestRepository;
 import com.wora.smartbank2.services.IRequestService;
 import com.wora.smartbank2.services.impl.RequestService;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,7 +18,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
-@WebServlet("/requests")
+@WebServlet("/requests/*")
 public class RequestController extends HttpServlet {
     private IRequestRepository requestRepository;
     private IRequestService requestService;
@@ -34,7 +32,7 @@ public class RequestController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
-        if (pathInfo == null | pathInfo.equals("/")) {
+        if (pathInfo == null || pathInfo.equals("/requests")) {
             getAllRequests(request, response);
         } else {
             getRequestById(request, response);
@@ -67,7 +65,7 @@ public class RequestController extends HttpServlet {
     private void getAllRequests(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Request> requests = requestService.findAll();
         request.setAttribute("requests", requests);
-        request.getRequestDispatcher("/WEB-INF/views/create.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/allRequests.jsp").forward(request, response);
     }
 
     private void getRequestById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -78,7 +76,7 @@ public class RequestController extends HttpServlet {
 
             if (requestObj != null) {
                 request.setAttribute("request", requestObj);
-                request.getRequestDispatcher("/WEB-INF/views/create.jsp").forward(request, response);
+                request.getRequestDispatcher("/views/update.jsp").forward(request, response);
             } else {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
             }
@@ -98,6 +96,7 @@ public class RequestController extends HttpServlet {
         Request updatedRequest = buildRequestParams(request);
         updatedRequest.setId(id);
         requestService.update(updatedRequest);
+        System.out.println(updatedRequest);
         response.sendRedirect(request.getContextPath() + "/requests");
     }
 

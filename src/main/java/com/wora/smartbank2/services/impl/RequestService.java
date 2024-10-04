@@ -3,6 +3,7 @@ import com.wora.smartbank2.entities.models.Request;
 import com.wora.smartbank2.repositories.IRequestRepository;
 import com.wora.smartbank2.services.IRequestService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RequestService implements IRequestService {
@@ -15,7 +16,12 @@ public class RequestService implements IRequestService {
 
     @Override
     public List<Request> findAll() {
-        return requestRepository.findAll();
+        try {
+            return requestRepository.findAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
     }
 
     @Override

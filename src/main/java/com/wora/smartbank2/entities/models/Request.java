@@ -211,4 +211,26 @@ public class Request {
     public void setHasCredits(@NotBlank boolean hasCredits) {
         this.hasCredits = hasCredits;
     }
+
+
+    @Override
+    public String toString() {
+        return "Request{" +
+                "id=" + id +
+                ", projectName='" + projectName + '\'' +
+                ", userType='" + userType + '\'' +
+                ", loanAmount=" + loanAmount +
+                ", loanDuration=" + loanDuration +
+                ", monthlyPayment=" + monthlyPayment +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", civility=" + civility +
+                ", fName='" + fName + '\'' +
+                ", lName='" + lName + '\'' +
+                ", cin='" + cin + '\'' +
+                ", birthDate=" + birthDate +
+                ", employmentStartDate=" + employmentStartDate +
+                ", hasCredits=" + hasCredits +
+                '}';
+    }
 }

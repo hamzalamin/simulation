@@ -54,19 +54,30 @@
             <version>6.1.0</version>
             <scope>provided</scope>
         </dependency>
-<!--        todo: hadchi mazal maghatkhdem bih-->
-<!--        <dependency>-->
-<!--            <groupId>org.junit.jupiter</groupId>-->
-<!--            <artifactId>junit-jupiter-api</artifactId>-->
-<!--            <version>${junit.version}</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.junit.jupiter</groupId>-->
-<!--            <artifactId>junit-jupiter-engine</artifactId>-->
-<!--            <version>${junit.version}</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+        <!--        todo: hadchi mazal maghatkhdem bih-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.junit.jupiter</groupId>-->
+        <!--            <artifactId>junit-jupiter-api</artifactId>-->
+        <!--            <version>${junit.version}</version>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.junit.jupiter</groupId>-->
+        <!--            <artifactId>junit-jupiter-engine</artifactId>-->
+        <!--            <version>${junit.version}</version>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
     </dependencies>
 
     <build>

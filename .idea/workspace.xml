@@ -10,14 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b732ed7c-845c-4a95-b326-732618f01856" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/create.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/allRequests.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/update.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/config/JPAUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/config/JPAUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/HelloServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/HelloServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/entities/models/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/entities/models/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/helpers/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/helpers/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/repositories/impl/RequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/repositories/impl/RequestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/services/impl/RequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/services/impl/RequestService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/web/controllers/RequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/web/controllers/RequestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,8 +31,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -93,6 +97,8 @@
       <recent name="C:\Users\hamza\IdeaProjects\smartBank2\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\hamza\IdeaProjects\smartBank2\src\main\webapp" />
+      <recent name="C:\Users\hamza\IdeaProjects\smartBank2\src\main\webapp\WEB-INF" />
       <recent name="C:\Users\hamza\IdeaProjects\smartBank2\src\main\webapp\views" />
     </key>
   </component>
@@ -209,7 +215,8 @@
       <workItem from="1727862571527" duration="5287000" />
       <workItem from="1727873735625" duration="12893000" />
       <workItem from="1727941262688" duration="1708000" />
-      <workItem from="1727942986809" duration="2386000" />
+      <workItem from="1727942986809" duration="17977000" />
+      <workItem from="1728026179830" duration="6529000" />
     </task>
     <servers />
   </component>

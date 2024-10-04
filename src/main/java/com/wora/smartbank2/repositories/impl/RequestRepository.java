@@ -32,7 +32,8 @@ public class RequestRepository implements IRequestRepository {
         try {
             transaction.begin();
             entityManager.merge(request);
-            transaction.rollback();
+            entityManager.flush();
+            transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
         }
@@ -49,7 +50,7 @@ public class RequestRepository implements IRequestRepository {
             List<Request> requests = null;
         try {
             transaction.begin();
-            requests = entityManager.createQuery("SELECT * FROM Request ", Request.class).getResultList();
+            requests = entityManager.createQuery("SELECT r FROM Request r", Request.class).getResultList();
             transaction.commit();
 
             return requests;
