@@ -1,0 +1,112 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  text-align: center;
+  margin: 20px;
+}
+
+.title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #e3dbdb;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #9b9b9b;
+}
+
+th {
+  background-color: #fddf35;
+}
+
+tbody tr:hover {
+  background-color: #dddddd;
+}
+
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.action-buttons .btn {
+  padding: 5px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.action-buttons .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.details-btn {
+}
+
+.update-btn {
+}
+
+.delete-btn {
+  background-color: #e3dbdb;
+  border: none;
+  cursor: pointer;
+}
+
+.details-btn:hover,
+.update-btn:hover,
+.delete-btn:hover {
+  opacity: 0.8;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.actions .btn {
+  padding: 10px 20px;
+  text-decoration: none;
+  background-color: #02AFBC;
+  color: white;
+  border-radius: 5px;
+  margin: 5px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.actions .btn:hover {
+  background-color: #3e9da8;
+}
