@@ -11,8 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b732ed7c-845c-4a95-b326-732618f01856" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/config/JPAUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/config/JPAUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/repositories/impl/RequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/repositories/impl/RequestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/allRequests.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/allRequests.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,7 +208,8 @@
       <workItem from="1727873735625" duration="12893000" />
       <workItem from="1727941262688" duration="1708000" />
       <workItem from="1727942986809" duration="17977000" />
-      <workItem from="1728026179830" duration="7467000" />
+      <workItem from="1728026179830" duration="13302000" />
+      <workItem from="1728084175344" duration="2447000" />
     </task>
     <servers />
   </component>
