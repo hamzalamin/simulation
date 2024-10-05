@@ -1,0 +1,384 @@
+$ylw: #FDDF35;
+$gry: #9B9B9B;
+$blu: #02AFBC;
+$wht: #ffffff;
+$blk: #000000;
+$gry2: #e3dbdb;
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e3dbdb;
+  margin: 75px 71px 61px;
+  margin-left: 254px;
+}
+
+
+.steps {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: transparent solid 5px;
+}
+
+.step {
+  flex: 1;
+  background-color: $gry;
+  color: $wht;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.step.active {
+  background-color: $ylw;
+  color: $blk;
+  padding: 30px;
+}
+
+.step.active:after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid $ylw;
+}
+
+.step-content {
+  display: none;
+  padding: 20px;
+}
+
+.step.active .step-content {
+  display: block;
+  border: #e5e3e3 solid 1px;
+  margin-top: -24px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+}
+
+.step-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.step-title {
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+.range-container {
+  position: relative;
+  width: 100%;
+  padding: 10px 0;
+}
+.range-container .range-value{
+  font-weight: bold;
+  color: $blu;
+  height: 27px;
+  width: 103px;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: $ylw;
+  cursor: pointer;
+  margin-top: -10px;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: $ylw;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 5px;
+  background: #ddd;
+  border-radius: 5px;
+}
+
+input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 5px;
+  background: #ddd;
+  border-radius: 5px;
+}
+
+.range-container::before,
+.range-container::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 1px;
+  background: $blk;
+  display: none;
+}
+
+
+.range-container::before {
+  left: 0;
+}
+
+.range-container::after {
+  right: 0;
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #333;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+  background: transparent;
+}
+
+.input-container label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #999;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.input-container input:focus ~ label,
+.input-container input:valid ~ label {
+  top: -20px;
+  font-size: 12px;
+  color: #666;
+}
+
+.input-container input:focus {
+  border-bottom: 2px solid #666;
+}
+
+.title-selection {
+  font-family: Arial, sans-serif;
+  margin-bottom: 20px;
+}
+
+.title-selection p {
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.radio-group {
+  display: flex;
+  gap: 20px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.radio-label input[type="radio"] {
+  display: none;
+}
+
+.radio-custom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  margin-right: 10px;
+  position: relative;
+}
+
+.radio-custom::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: $blu;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s ease;
+}
+
+.radio-label input[type="radio"]:checked + .radio-custom::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.steps {
+  display: flex;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  width: 649px;
+}
+
+.step {
+  flex: 1;
+  padding: 23px;
+  background-color: #9B9B9B;
+  color: white;
+  text-align: center;
+  margin: -4px;
+  width: 200px;
+  height: 56px;
+}
+
+.step.active {
+  background-color: #FDDF35;
+  color: black;
+  width: 200px;
+  height: 42px;
+}
+.step-number {
+  font-size: 24px;
+  font-weight: bold;
+}
+.step-title {
+  display: block;
+  margin-top: 10px;
+}
+.step-content {
+  display: none;
+}
+.step-content.active {
+  display: block;
+  border: #e5e3e3 solid 1px;
+  margin-top: -24px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+  background-color: $wht;
+  width: 617px;
+
+}
+
+.step-content select{
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background-color: $wht;
+  color: $gry;
+  width: 100%;
+  margin-top: -7px;
+
+}
+.btn{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.next-step{
+  background-color: $blu;
+  color: $wht;
+  border-color: $wht;
+  padding: 15px 30px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  outline: none;
+  transition: background-color 0.3s;
+}
+
+.next-step .subtext {
+  font-size: 16px;
+  font-weight: 400;
+}
+.next-step:hover {
+  background-color: $blu;
+}
+
+
+
+
+.prev-step{
+  border: none;
+  background-color: $wht;
+}
+
+.prev-step:hover{
+  border: none;
+  background-color: $wht;
+  color: $blu;
+}
+
+
+.recap {
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 0px;
+  margin-bottom: 549px;
+  margin-left: 10px;
+}
+
+.recap h3 {
+  color: $blk;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.recap-item {
+  margin-top: 15px;
+}
+
+.recap-item p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.project-type a {
+  color: #00b5ad;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.project-type a:hover {
+  text-decoration: underline;
+}
+
+.container--right{
+  background-image: url(https://www.wafasalaf.ma/themes/wafasalaf/assets/img/recap-background.png);
+  background-position: 100%;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: 100% 250%;
+  width: 28%;
+  height: fit-content;
+  margin: 20px ;
+  padding: 20px 0;
+  line-height: 1.75rem;
+}
+
+.container--right h2{
+  display: flex;
+  justify-content: center;
+}
+
+.container--right .recap-table{
+  margin-left: 5px;
+}
