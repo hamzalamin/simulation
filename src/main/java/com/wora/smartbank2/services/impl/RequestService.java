@@ -72,8 +72,6 @@ public class RequestService implements IRequestService {
         return requestRepository.filterByDate(birthDate);
     }
 
-    ;
-
     @Override
     public List<Request> filterByStatus(CreditStatus creditStatus) {
         Set<ConstraintViolation<CreditStatus>> constraintViolations = validator.validate(creditStatus);
@@ -83,5 +81,4 @@ public class RequestService implements IRequestService {
         return requestRepository.filterByStatus(creditStatus);
     }
 
-    ;
 }
