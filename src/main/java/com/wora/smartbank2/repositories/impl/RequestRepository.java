@@ -1,17 +1,20 @@
 package com.wora.smartbank2.repositories.impl;
 
 import com.wora.smartbank2.config.JPAUtil;
+import com.wora.smartbank2.entities.enums.CreditStatus;
 import com.wora.smartbank2.entities.models.Request;
 import com.wora.smartbank2.repositories.IRequestRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class RequestRepository implements IRequestRepository {
     private final EntityManagerFactory emf;
-    public RequestRepository(){
+
+    public RequestRepository() {
         this.emf = JPAUtil.entityManagerFactory();
     }
 
@@ -25,11 +28,11 @@ public class RequestRepository implements IRequestRepository {
             entityManager.persist(request);
             transaction.commit();
         } catch (Exception e) {
-            if(transaction != null && transaction.isActive()){
+            if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
         } finally {
-            if (entityManager != null){
+            if (entityManager != null) {
                 entityManager.close();
             }
         }
@@ -47,7 +50,7 @@ public class RequestRepository implements IRequestRepository {
         } catch (Exception e) {
             transaction.rollback();
         } finally {
-            if (entityManager != null){
+            if (entityManager != null) {
                 entityManager.close();
             }
         }
@@ -63,10 +66,10 @@ public class RequestRepository implements IRequestRepository {
             request = entityManager.find(Request.class, id);
             transaction.commit();
             return request;
-        } catch (Exception e){
+        } catch (Exception e) {
             transaction.rollback();
         } finally {
-            if (entityManager != null){
+            if (entityManager != null) {
                 entityManager.close();
             }
         }
@@ -78,17 +81,17 @@ public class RequestRepository implements IRequestRepository {
     public List<Request> findAll() {
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
-            List<Request> requests = null;
+        List<Request> requests = null;
         try {
             transaction.begin();
             requests = entityManager.createQuery("SELECT r FROM Request r", Request.class).getResultList();
             transaction.commit();
 
             return requests;
-        } catch (Exception e){
+        } catch (Exception e) {
             transaction.rollback();
         } finally {
-            if (entityManager != null){
+            if (entityManager != null) {
                 entityManager.close();
             }
         }
@@ -96,7 +99,7 @@ public class RequestRepository implements IRequestRepository {
     }
 
     @Override
-    public void delete(Long id){
+    public void delete(Long id) {
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try {
@@ -104,12 +107,64 @@ public class RequestRepository implements IRequestRepository {
             Request request = entityManager.find(Request.class, id);
             entityManager.remove(request);
             transaction.commit();
-        } catch (Exception e){
+        } catch (Exception e) {
             transaction.rollback();
         } finally {
-            if (entityManager != null){
+            if (entityManager != null) {
                 entityManager.close();
             }
         }
     }
+
+    @Override
+    public List<Request> filterByDate(LocalDate birthDate) {
+        EntityManager entityManager = emf.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        List<Request> requests = null;
+        try {
+            transaction.begin();
+            requests = entityManager.createQuery(
+                            "SELECT r FROM Request r WHERE r.birthDate = :birthDate", Request.class)
+                    .setParameter("birthDate", birthDate)
+                    .getResultList();
+            transaction.commit();
+            return requests;
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
+        return requests;
+    }
+
+    @Override
+    public List<Request> filterByStatus(CreditStatus creditStatus) {
+        EntityManager entityManager = emf.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        List<Request> requests = null;
+        try {
+            transaction.begin();
+            requests = entityManager.createQuery(
+                            "SELECT r FROM Request r WHERE r.creditStatus = :creditStatus", Request.class)
+                    .setParameter("creditStatus", creditStatus)
+                    .getResultList();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
+        return requests;
+    }
+
 }

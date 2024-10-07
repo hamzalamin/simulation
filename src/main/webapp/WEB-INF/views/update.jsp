@@ -10,10 +10,12 @@
 <html>
 <head>
     <title>Update Request</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/updateTable.css">
+
 </head>
 <body>
 <h1>Update Request</h1>
-<form action="${pageContext.request.contextPath}/requests" method="POST">
+<form class="update-form" action="${pageContext.request.contextPath}/requests" method="POST">
     <input type="hidden" name="action" value="update"/>
     <input type="hidden" name="id" value="${request.id}"/>
 
@@ -40,9 +42,9 @@
 
     <label for="civility">Civility:</label>
     <select id="civility" name="civility" required>
-        <option value="MADAM" <c:if test="${request.civility == 'MADAM'}">selected</c:if>>Male</option>
-        <option value="MISS" <c:if test="${request.civility == 'MISS'}">selected</c:if>>Female</option>
-        <option value="SIR" <c:if test="${request.civility == 'SIR'}">selected</c:if>>Other</option>
+        <option value="MADAM" <c:if test="${request.civility == 'MADAM'}">selected</c:if>>MADAM</option>
+        <option value="MISS" <c:if test="${request.civility == 'MISS'}">selected</c:if>>MISS</option>
+        <option value="SIR" <c:if test="${request.civility == 'SIR'}">selected</c:if>>SIR</option>
     </select><br/>
 
     <label for="f_name">First Name:</label>
@@ -60,8 +62,20 @@
     <label for="employment_start_date">Employment Start Date:</label>
     <input type="date" id="employment_start_date" name="local_date" value="${request.employmentStartDate}" required/><br/>
 
-    <label for="has_credits">Has Credits:</label>
-    <input type="checkbox" id="has_credits" name="has_credits" <c:if test="${request.hasCredits}">checked</c:if>/><br/>
+    <h4>Avez-vous des crédits en cours ?</h4>
+    <div class="radio-group">
+        <label class="radio-label">
+            <input type="radio" name="has_credits" value="true" <c:if test="${request.hasCredits}">checked</c:if>/>
+            <span class="radio-custom"></span>
+            oui
+        </label>
+        <label class="radio-label">
+            <input type="radio" name="has_credits" value="false" <c:if test="${!request.hasCredits}">checked</c:if>/>
+            <span class="radio-custom"></span>
+            non
+        </label>
+    </div>
+
 
     <input type="submit" value="Update"/>
 </form>

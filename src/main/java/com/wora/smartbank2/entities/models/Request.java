@@ -1,6 +1,7 @@
 package com.wora.smartbank2.entities.models;
 
 import com.wora.smartbank2.entities.enums.Civility;
+import com.wora.smartbank2.entities.enums.CreditStatus;
 import jakarta.persistence.*;
 
 
@@ -70,7 +71,10 @@ public class Request {
     @Column(name = "has_credits", nullable = false)
     private boolean hasCredits;
 
-    public Request(long id, String projectName, String userType, Double loanAmount, Double loanDuration, Double monthlyPayment, String email, String phone, Civility civility, String fName, String lName, String cin, LocalDate birthDate, LocalDate employmentStartDate, boolean hasCredits) {
+    @Enumerated(EnumType.STRING)
+    private CreditStatus creditStatus = CreditStatus.valueOf("PENDING");
+
+    public Request(long id, String projectName, String userType, Double loanAmount, Double loanDuration, Double monthlyPayment, String email, String phone, Civility civility, String fName, String lName, String cin, LocalDate birthDate, LocalDate employmentStartDate, boolean hasCredits, CreditStatus creditStatus) {
         this.id = id;
         this.projectName = projectName;
         this.userType = userType;
@@ -86,6 +90,7 @@ public class Request {
         this.birthDate = birthDate;
         this.employmentStartDate = employmentStartDate;
         this.hasCredits = hasCredits;
+        this.creditStatus = creditStatus;
     }
 
     public Request() {
@@ -212,6 +217,13 @@ public class Request {
         this.hasCredits = hasCredits;
     }
 
+    public CreditStatus getCreditStatus() {
+        return creditStatus;
+    }
+
+    public void setCreditStatus(CreditStatus creditStatus) {
+        this.creditStatus = creditStatus;
+    }
 
     @Override
     public String toString() {
@@ -231,6 +243,7 @@ public class Request {
                 ", birthDate=" + birthDate +
                 ", employmentStartDate=" + employmentStartDate +
                 ", hasCredits=" + hasCredits +
+                ", creditStatus=" + creditStatus +
                 '}';
     }
 }

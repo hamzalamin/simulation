@@ -65,23 +65,25 @@ public class RequestController extends HttpServlet {
     private void getAllRequests(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Request> requests = requestService.findAll();
         request.setAttribute("requests", requests);
-        request.getRequestDispatcher("/views/allRequests.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/allRequests.jsp").forward(request, response);
     }
 
     private void getRequestById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
+        System.out.println("here is the path info " + pathInfo);
         try {
+            System.out.println(pathInfo);
             Long id = Long.parseLong(pathInfo.substring(1));
             Request requestObj = requestService.findById(id);
 
             if (requestObj != null) {
                 request.setAttribute("request", requestObj);
-                request.getRequestDispatcher("/views/update.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/views/update.jsp").forward(request, response);
             } else {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
             }
         } catch (NumberFormatException e) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid request ID");
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
         }
     }
 

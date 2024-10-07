@@ -1,7 +1,9 @@
 package com.wora.smartbank2.repositories;
 
+import com.wora.smartbank2.entities.enums.CreditStatus;
 import com.wora.smartbank2.entities.models.Request;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IRequestRepository {
@@ -10,4 +12,6 @@ public interface IRequestRepository {
     Request findById(Long id);
     void delete(Long id);
     List<Request> findAll();
+    List<Request> filterByDate(LocalDate birthDate);
+    List<Request> filterByStatus(CreditStatus creditStatus);
 }
