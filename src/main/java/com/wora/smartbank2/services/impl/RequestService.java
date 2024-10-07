@@ -1,8 +1,10 @@
 package com.wora.smartbank2.services.impl;
+import com.wora.smartbank2.entities.enums.CreditStatus;
 import com.wora.smartbank2.entities.models.Request;
 import com.wora.smartbank2.repositories.IRequestRepository;
 import com.wora.smartbank2.services.IRequestService;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,4 +45,14 @@ public class RequestService implements IRequestService {
     public void delete(Long id) {
         requestRepository.delete(id);
     }
+
+    @Override
+    public List<Request> filterByDate(LocalDate birthDate){
+        return requestRepository.filterByDate(birthDate);
+    };
+
+    @Override
+    public List<Request> filterByStatus(CreditStatus creditStatus){
+        return requestRepository.filterByStatus(creditStatus);
+    };
 }
