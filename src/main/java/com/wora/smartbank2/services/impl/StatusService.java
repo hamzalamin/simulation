@@ -7,6 +7,8 @@ import com.wora.smartbank2.services.IStatusService;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class StatusService implements IStatusService {
@@ -49,5 +51,15 @@ public class StatusService implements IStatusService {
             throw new RuntimeException("error in validation of Status deleting");
         }
         repository.delete(id);
+    }
+
+    @Override
+    public List<Status> getAll(){
+        try {
+            return repository.getAll();
+        } catch (Exception e) {
+            e.getMessage();
+            return new ArrayList<>();
+        }
     }
 }

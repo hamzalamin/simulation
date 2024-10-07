@@ -106,7 +106,7 @@ public class StatusRepository implements IStatusRepository {
             transaction.rollback();
         } finally {
             if (entityManager != null){
-                entityManager.close();.
+                entityManager.close();
             }
         }
 

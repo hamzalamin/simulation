@@ -26,7 +26,7 @@ public class RequestService implements IRequestService {
         try {
             return requestRepository.findAll();
         } catch (Exception e) {
-            e.printStackTrace();
+            e.getMessage();
             return new ArrayList<>();
         }
     }
