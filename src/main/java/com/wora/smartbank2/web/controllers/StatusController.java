@@ -1,5 +1,7 @@
 package com.wora.smartbank2.web.controllers;
 
+import com.wora.smartbank2.entities.models.Request;
+import com.wora.smartbank2.entities.models.Status;
 import com.wora.smartbank2.repositories.IStatusRepository;
 import com.wora.smartbank2.repositories.impl.RequestRepository;
 import com.wora.smartbank2.repositories.impl.StatusRepository;
@@ -9,7 +11,12 @@ import com.wora.smartbank2.services.impl.StatusService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Validation;
+
+import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/status/*")
 public class StatusController extends HttpServlet {
@@ -20,6 +27,63 @@ public class StatusController extends HttpServlet {
     public void init() throws ServletException {
         this.statusRepository = new StatusRepository();
         this.statusService = new StatusService(statusRepository, Validation.buildDefaultValidatorFactory().getValidator());
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String pathInfo = request.getPathInfo();
+        String action = request.getParameter("action");
+
+        if (action != null){
+            switch (action){
+                case "createStatusForm":
+                    showCreateStatusForm(request, response);
+                case "updateStatusForm":
+                    showUpdateStatusForm(request, response);
+                default:
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid action");
+            }
+        } else {
+            if (pathInfo == null || pathInfo.equals("/status")) {
+                getAllStatus(request, response);
+            } else {
+                getStatusById(request, response);
+            }
+        }
+
+    }
+
+    private void showCreateStatusForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/WEB-INF/views/status/create.jsp").forward(request, response);
+    }
+
+    private void showUpdateStatusForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        Status statusObj = statusService.findById(id);
+
+        if (statusObj != null) {
+            request.setAttribute("status", statusObj);
+            request.getRequestDispatcher("/WEB-INF/views/status/update.jsp").forward(request, response);
+        } else {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+        }
+    }
+
+    private void getAllStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Status> status = statusService.getAll();
+        request.setAttribute("requests", status);
+        request.getRequestDispatcher("/WEB-INF/views/status/allStatus.jsp").forward(request, response);
+    }
+
+    private void getStatusById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String pathInfo = request.getPathInfo();
+        try {
+            System.out.println(pathInfo);
+            Long id = Long.parseLong(pathInfo.substring(1));
+            Status statusObj = statusService.findById(id);
+        } catch (NumberFormatException e) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
+        }
     }
 
 
