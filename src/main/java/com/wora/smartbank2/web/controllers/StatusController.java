@@ -53,6 +53,31 @@ public class StatusController extends HttpServlet {
 
     }
 
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+
+        if (action != null) {
+            switch (action) {
+                case "create":
+                    createStatus(request, response);
+                    break;
+                case "update":
+                    updateStatus(request, response);
+                    break;
+                case "delete":
+                    deleteStatus(request, response);
+                    break;
+                default:
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid action");
+            }
+        } else {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Action parameter is missing");
+        }
+    }
+
+
     private void showCreateStatusForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/views/status/create.jsp").forward(request, response);
     }
@@ -86,5 +111,33 @@ public class StatusController extends HttpServlet {
         }
     }
 
+
+    private void createStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Status newStatus = buildStatusParams(request);
+        statusService.create(newStatus);
+        response.sendRedirect(request.getContextPath() + "/status");
+    }
+
+    private void updateStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        Status updatedStatus = buildStatusParams(request);
+        updatedStatus.setId(id);
+        statusService.update(updatedStatus);
+        System.out.println(updatedStatus);
+        response.sendRedirect(request.getContextPath() + "/status");
+    }
+
+    private void deleteStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        statusService.delete(id);
+        response.sendRedirect(request.getContextPath() + "/status");
+    }
+
+    private Status buildStatusParams(HttpServletRequest request) {
+        String statusName = request.getParameter("status");
+        Status newStatus = new Status();
+        newStatus.setStatus(statusName);
+        return newStatus;
+    }
 
 }

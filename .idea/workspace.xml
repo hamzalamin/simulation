@@ -10,6 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b732ed7c-845c-4a95-b326-732618f01856" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/status/allStatus.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/status/create.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/status/update.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/web/controllers/StatusController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/web/controllers/StatusController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +24,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="HTML File" />
         <option value="Sass File" />
         <option value="CSS File" />
@@ -28,6 +31,7 @@
         <option value="SCSS File" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -216,7 +220,7 @@
       <workItem from="1728026179830" duration="13302000" />
       <workItem from="1728084175344" duration="3689000" />
       <workItem from="1728138095533" duration="27648000" />
-      <workItem from="1728305891150" duration="14575000" />
+      <workItem from="1728305891150" duration="15368000" />
     </task>
     <servers />
   </component>
