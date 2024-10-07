@@ -1,6 +1,7 @@
 package com.wora.smartbank2.web.controllers;
 
 import com.wora.smartbank2.entities.enums.Civility;
+import com.wora.smartbank2.entities.enums.CreditStatus;
 import com.wora.smartbank2.entities.models.Request;
 import com.wora.smartbank2.helpers.Utils;
 import com.wora.smartbank2.repositories.IRequestRepository;
@@ -79,6 +80,20 @@ public class RequestController extends HttpServlet {
         }
 
         List<Request> requests = requestService.filterByDate(birthDate);
+        request.setAttribute("requests", requests);
+        request.getRequestDispatcher("/WEB-INF/views/allRequests.jsp").forward(request, response);
+    }
+
+    public void filterByStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        CreditStatus creditStatus = Utils.getEnumParameter(request, "creditstatus", CreditStatus.class);
+
+        if (creditStatus == null) {
+            request.setAttribute("errorMessage", "Invalid choice.");
+            request.getRequestDispatcher("/WEB-INF/views/error.jsp").forward(request, response);
+            return;
+        }
+
+        List<Request> requests = requestService.filterByStatus(creditStatus);
         request.setAttribute("requests", requests);
         request.getRequestDispatcher("/WEB-INF/views/allRequests.jsp").forward(request, response);
     }
