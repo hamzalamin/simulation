@@ -12,11 +12,11 @@
 <html>
 <head>
     <title>Requests</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/getAllStyle.scss">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/getAllStyle.css">
 </head>
 <body>
 <div class="container">
-    <h1 class="title">Requests List</h1>
+    <h1 class="title">Requests List 123</h1>
     <div border="1" class="table-container">
         <table>
             <thead>
@@ -45,7 +45,10 @@
                     <td>${request.phone}</td>
                     <td class="action-buttons">
                         <a href="${pageContext.request.contextPath}/requests/${request.id}" class="btn details-btn"><img class="icon" src="${pageContext.request.contextPath}/icons/detail.png"></a>
-                        <a href="${pageContext.request.contextPath}/requests/${request.id}" class="btn update-btn"><img class="icon" src="${pageContext.request.contextPath}/icons/update.png"></a>
+                        <a href="${pageContext.request.contextPath}/requests?action=updateForm&id=${request.id}" class="btn update-btn">
+                            <img class="icon" src="${pageContext.request.contextPath}/icons/update.png">
+                        </a>
+
                         <form action="${pageContext.request.contextPath}/requests" method="post" class="delete-form">
                             <input type="hidden" value="${request.id}" name="id">
                             <input type="hidden" value="delete" name="action">

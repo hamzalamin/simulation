@@ -210,6 +210,7 @@
                 <div class="btn">
                     <button class="next-step" type="submit">Demende ce credit</button>
                     <button
+                            type="submit"
                             class="next-step"
                             style="background: #02afbc; margin-left: 5px"
                     >

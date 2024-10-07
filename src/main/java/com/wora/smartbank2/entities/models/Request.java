@@ -3,9 +3,9 @@ package com.wora.smartbank2.entities.models;
 import com.wora.smartbank2.entities.enums.Civility;
 import com.wora.smartbank2.entities.enums.CreditStatus;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 @Entity
@@ -72,7 +72,7 @@ public class Request {
     private boolean hasCredits;
 
     @Enumerated(EnumType.STRING)
-    private CreditStatus creditStatus = CreditStatus.valueOf("PENDING");
+    private CreditStatus creditStatus = CreditStatus.PENDING;
 
     public Request(long id, String projectName, String userType, Double loanAmount, Double loanDuration, Double monthlyPayment, String email, String phone, Civility civility, String fName, String lName, String cin, LocalDate birthDate, LocalDate employmentStartDate, boolean hasCredits, CreditStatus creditStatus) {
         this.id = id;

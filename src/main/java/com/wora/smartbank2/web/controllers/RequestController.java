@@ -14,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Validation;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -28,18 +29,34 @@ public class RequestController extends HttpServlet {
     @Override
     public void init() throws ServletException {
         this.requestRepository = new RequestRepository();
-        this.requestService = new RequestService(requestRepository);
+        this.requestService = new RequestService(requestRepository, Validation.buildDefaultValidatorFactory().getValidator());
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
-        if (pathInfo == null || pathInfo.equals("/requests")) {
-            getAllRequests(request, response);
+        String action = request.getParameter("action");
+
+        if (action != null) {
+            switch (action) {
+                case "createForm":
+                    showCreateForm(request, response);
+                    break;
+                case "updateForm":
+                    showUpdateForm(request, response);
+                    break;
+                default:
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid action");
+            }
         } else {
-            getRequestById(request, response);
+            if (pathInfo == null || pathInfo.equals("/requests")) {
+                getAllRequests(request, response);
+            } else {
+                getRequestById(request, response);
+            }
         }
     }
+
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -102,18 +119,10 @@ public class RequestController extends HttpServlet {
 
     private void getRequestById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
-        System.out.println("here is the path info " + pathInfo);
         try {
             System.out.println(pathInfo);
             Long id = Long.parseLong(pathInfo.substring(1));
             Request requestObj = requestService.findById(id);
-
-            if (requestObj != null) {
-                request.setAttribute("request", requestObj);
-                request.getRequestDispatcher("/WEB-INF/views/update.jsp").forward(request, response);
-            } else {
-                response.sendError(HttpServletResponse.SC_NOT_FOUND);
-            }
         } catch (NumberFormatException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
         }
@@ -155,6 +164,7 @@ public class RequestController extends HttpServlet {
         LocalDate birthDate = Utils.getDateParameter(request, "birth_date", "yyyy-MM-dd");
         LocalDate localDate = Utils.getDateParameter(request, "local_date", "yyyy-MM-dd");
         Boolean hasCredits = Utils.getBooleanParameter(request, "has_credits");
+        CreditStatus creditStatus = Utils.getEnumParameter(request, "creditStatus", CreditStatus.class);
 
         Request newRequest = new Request();
         newRequest.setProjectName(projectName);
@@ -171,7 +181,25 @@ public class RequestController extends HttpServlet {
         newRequest.setBirthDate(birthDate);
         newRequest.setEmploymentStartDate(localDate);
         newRequest.setHasCredits(hasCredits);
+        newRequest.setCreditStatus(creditStatus);
 
         return newRequest;
     }
+
+    private void showCreateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/WEB-INF/views/create.jsp").forward(request, response);
+    }
+
+    private void showUpdateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        Request requestObj = requestService.findById(id);
+
+        if (requestObj != null) {
+            request.setAttribute("request", requestObj);
+            request.getRequestDispatcher("/WEB-INF/views/update.jsp").forward(request, response);
+        } else {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+        }
+    }
+
 }
