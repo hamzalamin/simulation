@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @WebServlet("/requests/*")
@@ -67,6 +68,22 @@ public class RequestController extends HttpServlet {
         request.setAttribute("requests", requests);
         request.getRequestDispatcher("/WEB-INF/views/allRequests.jsp").forward(request, response);
     }
+
+    public void filterByDate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        LocalDate birthDate = Utils.getDateParameter(request, "birth_date", "yyyy-MM-dd");
+        if (birthDate == null) {
+            request.setAttribute("errorMessage", "Invalid date format. Please use YYYY-MM-DD.");
+            request.getRequestDispatcher("/WEB-INF/views/error.jsp").forward(request, response);
+            return;
+        }
+
+        List<Request> requests = requestService.filterByDate(birthDate);
+        request.setAttribute("requests", requests);
+        request.getRequestDispatcher("/WEB-INF/views/allRequests.jsp").forward(request, response);
+    }
+
+
 
     private void getRequestById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
