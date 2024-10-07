@@ -8,6 +8,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 
+import java.util.List;
+
 public class StatusRepository implements IStatusRepository {
     private final EntityManagerFactory emf;
 
@@ -89,5 +91,26 @@ public class StatusRepository implements IStatusRepository {
                 entityManager.close();
             }
         }
+    }
+
+    @Override
+    public List<Status> getAll(){
+        EntityManager entityManager = emf.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        List<Status> status = null;
+        try {
+            transaction.begin();
+            entityManager.createQuery("SELECT s FROM Status s", Status.class).getResultList();
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        } finally {
+            if (entityManager != null){
+                entityManager.close();.
+            }
+        }
+
+
+        return status;
     }
 }
