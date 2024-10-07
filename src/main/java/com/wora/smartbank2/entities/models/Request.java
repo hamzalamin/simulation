@@ -71,10 +71,11 @@ public class Request {
     @Column(name = "has_credits", nullable = false)
     private boolean hasCredits;
 
-    @Enumerated(EnumType.STRING)
-    private CreditStatus creditStatus = CreditStatus.PENDING;
+    @ManyToOne
+    @JoinColumn(name = "status_id", nullable = false)
+    private Status statusId;
 
-    public Request(long id, String projectName, String userType, Double loanAmount, Double loanDuration, Double monthlyPayment, String email, String phone, Civility civility, String fName, String lName, String cin, LocalDate birthDate, LocalDate employmentStartDate, boolean hasCredits, CreditStatus creditStatus) {
+    public Request(long id, String projectName, String userType, Double loanAmount, Double loanDuration, Double monthlyPayment, String email, String phone, Civility civility, String fName, String lName, String cin, LocalDate birthDate, LocalDate employmentStartDate, boolean hasCredits, Status statusId) {
         this.id = id;
         this.projectName = projectName;
         this.userType = userType;
@@ -90,7 +91,7 @@ public class Request {
         this.birthDate = birthDate;
         this.employmentStartDate = employmentStartDate;
         this.hasCredits = hasCredits;
-        this.creditStatus = creditStatus;
+        this.statusId = statusId;
     }
 
     public Request() {
@@ -217,12 +218,12 @@ public class Request {
         this.hasCredits = hasCredits;
     }
 
-    public CreditStatus getCreditStatus() {
-        return creditStatus;
+    public Status getStatusId() {
+        return statusId;
     }
 
-    public void setCreditStatus(CreditStatus creditStatus) {
-        this.creditStatus = creditStatus;
+    public void setStatusId(Status statusId) {
+        this.statusId = statusId;
     }
 
     @Override
@@ -243,7 +244,7 @@ public class Request {
                 ", birthDate=" + birthDate +
                 ", employmentStartDate=" + employmentStartDate +
                 ", hasCredits=" + hasCredits +
-                ", creditStatus=" + creditStatus +
+                ", creditStatus=" + statusId +
                 '}';
     }
 }

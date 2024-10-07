@@ -10,17 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b732ed7c-845c-4a95-b326-732618f01856" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/styles/home.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/entities/models/Status.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/repositories/IStatusRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/repositories/impl/StatusRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/services/IStatusService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/services/impl/StatusService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/entities/models/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/entities/models/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/services/impl/RequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/services/impl/RequestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/helpers/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/helpers/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/web/controllers/RequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/web/controllers/RequestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/allRequests.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/allRequests.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/create.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/create.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/update.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/update.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/styles/getAllStyle.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/styles/getAllStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/styles/getAllStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/styles/getAllStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,13 +29,14 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Jsp File" />
         <option value="HTML File" />
         <option value="Sass File" />
         <option value="CSS File" />
         <option value="Enum" />
         <option value="SCSS File" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -225,7 +225,7 @@
       <workItem from="1728026179830" duration="13302000" />
       <workItem from="1728084175344" duration="3689000" />
       <workItem from="1728138095533" duration="27648000" />
-      <workItem from="1728305891150" duration="7541000" />
+      <workItem from="1728305891150" duration="12902000" />
     </task>
     <servers />
   </component>

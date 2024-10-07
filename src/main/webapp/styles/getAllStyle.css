@@ -45,7 +45,7 @@ tbody tr:hover {
 }
 
 .action-buttons .btn {
-  padding: 5px;
+  padding: 0px !important;
   text-decoration: none;
   font-size: 0.9rem;
   border-radius: 5px;
@@ -53,7 +53,7 @@ tbody tr:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
+  width: 40px;  
   height: 40px;
   background-color: #fff;
   border: 1px solid #000;

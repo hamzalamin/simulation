@@ -3,10 +3,14 @@ package com.wora.smartbank2.web.controllers;
 import com.wora.smartbank2.entities.enums.Civility;
 import com.wora.smartbank2.entities.enums.CreditStatus;
 import com.wora.smartbank2.entities.models.Request;
+import com.wora.smartbank2.entities.models.Status;
 import com.wora.smartbank2.helpers.Utils;
 import com.wora.smartbank2.repositories.IRequestRepository;
+import com.wora.smartbank2.repositories.IStatusRepository;
 import com.wora.smartbank2.repositories.impl.RequestRepository;
+import com.wora.smartbank2.repositories.impl.StatusRepository;
 import com.wora.smartbank2.services.IRequestService;
+import com.wora.smartbank2.services.IStatusService;
 import com.wora.smartbank2.services.impl.RequestService;
 
 import jakarta.servlet.ServletException;
@@ -18,7 +22,6 @@ import jakarta.validation.Validation;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @WebServlet("/requests/*")
@@ -26,9 +29,13 @@ public class RequestController extends HttpServlet {
     private IRequestRepository requestRepository;
     private IRequestService requestService;
 
+    private IStatusRepository statusRepository;
+    private IStatusService statusService;
+
     @Override
     public void init() throws ServletException {
         this.requestRepository = new RequestRepository();
+        this.statusRepository = new StatusRepository();
         this.requestService = new RequestService(requestRepository, Validation.buildDefaultValidatorFactory().getValidator());
     }
 
@@ -164,7 +171,10 @@ public class RequestController extends HttpServlet {
         LocalDate birthDate = Utils.getDateParameter(request, "birth_date", "yyyy-MM-dd");
         LocalDate localDate = Utils.getDateParameter(request, "local_date", "yyyy-MM-dd");
         Boolean hasCredits = Utils.getBooleanParameter(request, "has_credits");
-        CreditStatus creditStatus = Utils.getEnumParameter(request, "creditStatus", CreditStatus.class);
+        String creditStatusIdStr = request.getParameter("creditStatusId");
+        Long creditStatusId = Long.parseLong(creditStatusIdStr);
+        Status creditStatus = statusService.findById(creditStatusId);
+
 
         Request newRequest = new Request();
         newRequest.setProjectName(projectName);
@@ -181,7 +191,7 @@ public class RequestController extends HttpServlet {
         newRequest.setBirthDate(birthDate);
         newRequest.setEmploymentStartDate(localDate);
         newRequest.setHasCredits(hasCredits);
-        newRequest.setCreditStatus(creditStatus);
+        newRequest.setStatusId(creditStatus);
 
         return newRequest;
     }
