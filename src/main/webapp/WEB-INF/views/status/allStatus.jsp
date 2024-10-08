@@ -48,6 +48,7 @@
         </c:forEach>
         </tbody>
     </table>
+    <li><a href="${pageContext.request.contextPath}/status?action=createStatusForm" class="btn btn-primary">Create New Status</a></li>
 </div>
 </body>
 </html>

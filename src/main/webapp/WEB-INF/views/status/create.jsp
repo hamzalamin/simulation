@@ -15,7 +15,7 @@
 </head>
 
 <form class="update-form" action="${pageContext.request.contextPath}/status" method="POST">
-    <input type="hidden" name="action" value="update"/>
+    <input type="hidden" name="action" value="create"/>
 
     <label for="status">Project Name:</label>
     <input type="text" id="status" name="status" required/><br/>

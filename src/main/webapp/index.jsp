@@ -12,6 +12,7 @@
     <ol class="links">
         <li><a href="${pageContext.request.contextPath}/requests?action=createForm" class="btn btn-primary">Create New Request</a></li>
         <li><a href="requests">All Request</a></li>
+        <li><a href="status">All Status</a></li>
     </ol>
     <p class="note">
         <strong>Important Notice:</strong> Please be aware that taking credit from our bank may be considered haram (forbidden) in Islam. We encourage individuals to seek financial solutions that align with their beliefs. If you have any questions or need guidance, please consult with a knowledgeable authority on Islamic finance.
