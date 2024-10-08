@@ -3,6 +3,8 @@ package com.wora.smartbank2.entities.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.List;
+
 @Entity
 @Table(name = "status")
 public class Status {
@@ -14,8 +16,16 @@ public class Status {
     @NotBlank
     private String status;
 
-    public Status(Long id, String status) {
+    @OneToMany(mappedBy = "status", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<RequestStatus> requestStatuses;
+
+
+    public Status(Long id, List<RequestStatus> requestStatuses) {
         this.id = id;
+        this.requestStatuses = requestStatuses;
+    }
+
+    public Status(String status) {
         this.status = status;
     }
 
@@ -29,12 +39,21 @@ public class Status {
         this.id = id;
     }
 
-    public String getStatus() {
+    public @NotBlank String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(@NotBlank String status) {
         this.status = status;
     }
+
+    public List<RequestStatus> getRequestStatuses() {
+        return requestStatuses;
+    }
+
+    public void setRequestStatuses(List<RequestStatus> requestStatuses) {
+        this.requestStatuses = requestStatuses;
+    }
+
 
 }

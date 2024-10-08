@@ -141,19 +141,19 @@
                     <p>Civilité</p>
                     <div class="radio-group">
                         <label class="radio-label">
-                            <input type="radio" name="civility" value="madame" checked/>
+                            <input type="radio" name="civility" value="MADAM" checked/>
                             <span class="radio-custom"></span>
-                            Madame
+                            MADAM
                         </label>
                         <label class="radio-label">
-                            <input type="radio" name="civility" value="mademoiselle"/>
+                            <input type="radio" name="civility" value="MISS"/>
                             <span class="radio-custom"></span>
-                            Mademoiselle
+                            MISS
                         </label>
                         <label class="radio-label">
-                            <input type="radio" name="civility" value="monsieur"/>
+                            <input type="radio" name="civility" value="SIR"/>
                             <span class="radio-custom"></span>
-                            Monsieur
+                            SIR
                         </label>
                     </div>
                     <div class="input-container" style="margin-top: 20px">

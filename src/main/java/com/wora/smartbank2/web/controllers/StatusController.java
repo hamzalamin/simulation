@@ -1,5 +1,6 @@
 package com.wora.smartbank2.web.controllers;
 
+import com.wora.smartbank2.entities.models.RequestStatus;
 import com.wora.smartbank2.entities.models.Status;
 import com.wora.smartbank2.repositories.IStatusRepository;
 import com.wora.smartbank2.repositories.impl.StatusRepository;
@@ -127,6 +128,7 @@ public class StatusController extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
+
             request.setAttribute("error", "Failed to update status.");
             request.getRequestDispatcher("/WEB-INF/views/status/update.jsp").forward(request, response);
         }
@@ -141,10 +143,8 @@ public class StatusController extends HttpServlet {
     }
 
     private Status buildStatusParams(HttpServletRequest request) {
-        String statusName = request.getParameter("status");
-        Status newStatus = new Status();
-        newStatus.setStatus(statusName);
-        return newStatus;
+        String status = request.getParameter("status");
+        return new Status(status);
     }
 
 }

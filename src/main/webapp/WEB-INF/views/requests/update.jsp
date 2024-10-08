@@ -77,35 +77,14 @@
     </div>
 
     <label for="status">Status:</label>
-    <select id="status" name="status" required>
+    <select id="status" name="creditStatusId" required>
         <c:forEach var="status" items="${status}">
-            <option value="${status.id}" >
+            <option value="${status.id}" <c:if test="${status.id == request.status.id}">selected</c:if>>
                     ${status.status}
             </option>
         </c:forEach>
     </select><br/>
 
-<%--    <h4>Avez-vous des crédits en cours ?</h4>--%>
-<%--    <div class="radio-group">--%>
-<%--        <label class="radio-label">--%>
-<%--            <input type="radio" name="creditStatus" value="PENDING" <c:if test="${request.creditStatus.name() == 'PENDING'}">checked</c:if>/>--%>
-<%--            <span class="radio-custom">--%>
-<%--                PENDING--%>
-<%--            </span>--%>
-<%--        </label>--%>
-<%--        <label class="radio-label">--%>
-<%--            <input type="radio" name="creditStatus" value="CANCELED" <c:if test="${request.creditStatus.name() == 'CANCELED'}">checked</c:if>/>--%>
-<%--            <span class="radio-custom">--%>
-<%--                CANCELED--%>
-<%--            </span>--%>
-<%--        </label>--%>
-<%--        <label class="radio-label">--%>
-<%--            <input type="radio" name="creditStatus" value="CONFIRMED" <c:if test="${request.creditStatus.name() == 'CONFIRMED'}">checked</c:if>/>--%>
-<%--            <span class="radio-custom">--%>
-<%--                CONFIRMED--%>
-<%--            </span>--%>
-<%--        </label>--%>
-<%--    </div>--%>
     <input type="submit" value="Update"/>
 </form>
 </body>

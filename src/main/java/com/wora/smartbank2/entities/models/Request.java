@@ -1,12 +1,11 @@
 package com.wora.smartbank2.entities.models;
 
 import com.wora.smartbank2.entities.enums.Civility;
-import com.wora.smartbank2.entities.enums.CreditStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-
-
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "requests")
@@ -23,15 +22,15 @@ public class Request {
     @Column(name = "user_type", length = 255, nullable = false)
     private String userType;
 
-    @NotBlank
+    @NotNull
     @Column(name = "loan_amount", nullable = false)
     private Double loanAmount;
 
-    @NotBlank
+    @NotNull
     @Column(name = "loan_duration", nullable = false)
     private Double loanDuration;
 
-    @NotBlank
+    @NotNull
     @Column(name = "monthly_payment", nullable = false)
     private Double monthlyPayment;
 
@@ -43,7 +42,7 @@ public class Request {
     @Column(name = "phone", nullable = false, length = 255)
     private String phone;
 
-    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Civility civility;
 
@@ -59,24 +58,30 @@ public class Request {
     @Column(name = "cin", length = 255, nullable = false)
     private String cin;
 
-    @NotBlank
-    @Temporal(TemporalType.DATE)
+    @NotNull
+    @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @NotBlank
-    @Temporal(TemporalType.DATE)
+    @NotNull
+    @Column(name = "employment_start_date")
     private LocalDate employmentStartDate;
 
-    @NotBlank
+    @NotNull
     @Column(name = "has_credits", nullable = false)
     private boolean hasCredits;
 
-    @ManyToOne
-    @JoinColumn(name = "status_id", nullable = true)
-    private Status statusId;
+    @OneToMany(mappedBy = "request", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<RequestStatus> status;
 
+    public void addStatus(RequestStatus requestStatus) {
+        this.status.add(requestStatus);
+        requestStatus.setRequest(this);
+    }
 
-    public Request(long id, String projectName, String userType, Double loanAmount, Double loanDuration, Double monthlyPayment, String email, String phone, Civility civility, String fName, String lName, String cin, LocalDate birthDate, LocalDate employmentStartDate, boolean hasCredits, Status statusId) {
+    public Request(long id, String projectName, String userType, Double loanAmount, Double loanDuration,
+                   Double monthlyPayment, String email, String phone, Civility civility, String fName,
+                   String lName, String cin, LocalDate birthDate, LocalDate employmentStartDate,
+                   boolean hasCredits, List<RequestStatus> status) {
         this.id = id;
         this.projectName = projectName;
         this.userType = userType;
@@ -92,9 +97,8 @@ public class Request {
         this.birthDate = birthDate;
         this.employmentStartDate = employmentStartDate;
         this.hasCredits = hasCredits;
-        this.statusId = statusId;
+        this.status = status;
     }
-
     public Request() {
     }
 
@@ -122,27 +126,27 @@ public class Request {
         this.userType = userType;
     }
 
-    public @NotBlank Double getLoanAmount() {
+    public @NotNull Double getLoanAmount() {
         return loanAmount;
     }
 
-    public void setLoanAmount(@NotBlank Double loanAmount) {
+    public void setLoanAmount(@NotNull Double loanAmount) {
         this.loanAmount = loanAmount;
     }
 
-    public @NotBlank Double getLoanDuration() {
+    public @NotNull Double getLoanDuration() {
         return loanDuration;
     }
 
-    public void setLoanDuration(@NotBlank Double loanDuration) {
+    public void setLoanDuration(@NotNull Double loanDuration) {
         this.loanDuration = loanDuration;
     }
 
-    public @NotBlank Double getMonthlyPayment() {
+    public @NotNull Double getMonthlyPayment() {
         return monthlyPayment;
     }
 
-    public void setMonthlyPayment(@NotBlank Double monthlyPayment) {
+    public void setMonthlyPayment(@NotNull Double monthlyPayment) {
         this.monthlyPayment = monthlyPayment;
     }
 
@@ -162,11 +166,11 @@ public class Request {
         this.phone = phone;
     }
 
-    public @NotBlank Civility getCivility() {
+    public @NotNull Civility getCivility() {
         return civility;
     }
 
-    public void setCivility(@NotBlank Civility civility) {
+    public void setCivility(@NotNull Civility civility) {
         this.civility = civility;
     }
 
@@ -194,37 +198,37 @@ public class Request {
         this.cin = cin;
     }
 
-    public @NotBlank LocalDate getBirthDate() {
+    public @NotNull LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(@NotBlank LocalDate birthDate) {
+    public void setBirthDate(@NotNull LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
-    public @NotBlank LocalDate getEmploymentStartDate() {
+    public @NotNull LocalDate getEmploymentStartDate() {
         return employmentStartDate;
     }
 
-    public void setEmploymentStartDate(@NotBlank LocalDate employmentStartDate) {
+    public void setEmploymentStartDate(@NotNull LocalDate employmentStartDate) {
         this.employmentStartDate = employmentStartDate;
     }
 
-    @NotBlank
+    @NotNull
     public boolean isHasCredits() {
         return hasCredits;
     }
 
-    public void setHasCredits(@NotBlank boolean hasCredits) {
+    public void setHasCredits(@NotNull boolean hasCredits) {
         this.hasCredits = hasCredits;
     }
 
-    public Status getStatusId() {
-        return statusId;
+    public  List<RequestStatus>  getStatus() {
+        return status;
     }
 
-    public void setStatusId(Status statusId) {
-        this.statusId = statusId;
+    public void setStatus(List<RequestStatus> statusId) {
+        this.status = statusId;
     }
 
     @Override
@@ -245,7 +249,7 @@ public class Request {
                 ", birthDate=" + birthDate +
                 ", employmentStartDate=" + employmentStartDate +
                 ", hasCredits=" + hasCredits +
-                ", creditStatus=" + statusId +
+                ", status=" + status +
                 '}';
     }
 }

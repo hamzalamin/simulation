@@ -3,6 +3,7 @@ package com.wora.smartbank2.web.controllers;
 import com.wora.smartbank2.entities.enums.Civility;
 import com.wora.smartbank2.entities.enums.CreditStatus;
 import com.wora.smartbank2.entities.models.Request;
+import com.wora.smartbank2.entities.models.RequestStatus;
 import com.wora.smartbank2.entities.models.Status;
 import com.wora.smartbank2.helpers.Utils;
 import com.wora.smartbank2.repositories.IRequestRepository;
@@ -163,10 +164,6 @@ public class RequestController extends HttpServlet {
         LocalDate birthDate = Utils.getDateParameter(request, "birth_date", "yyyy-MM-dd");
         LocalDate localDate = Utils.getDateParameter(request, "local_date", "yyyy-MM-dd");
         Boolean hasCredits = Utils.getBooleanParameter(request, "has_credits");
-        String creditStatusIdStr = request.getParameter("creditStatusId");
-        Long creditStatusId = Long.parseLong(creditStatusIdStr);
-        Status creditStatus = statusService.findById(creditStatusId);
-
 
         Request newRequest = new Request();
         newRequest.setProjectName(projectName);
@@ -183,7 +180,7 @@ public class RequestController extends HttpServlet {
         newRequest.setBirthDate(birthDate);
         newRequest.setEmploymentStartDate(localDate);
         newRequest.setHasCredits(hasCredits);
-        newRequest.setStatusId(creditStatus);
+        newRequest.setStatus(null);
 
         return newRequest;
     }
@@ -199,8 +196,9 @@ public class RequestController extends HttpServlet {
         List<Status> status = statusService.getAll();
 
         if (requestObj != null || status != null) {
-            request.setAttribute("request", requestObj);
             request.setAttribute("status", status);
+            request.setAttribute("request", requestObj);
+            System.out.println("Request Object: " + requestObj);
             request.getRequestDispatcher("/WEB-INF/views/requests/update.jsp").forward(request, response);
         } else {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);

@@ -4,9 +4,11 @@ import com.wora.smartbank2.config.JPAUtil;
 import com.wora.smartbank2.entities.enums.CreditStatus;
 import com.wora.smartbank2.entities.models.Request;
 import com.wora.smartbank2.repositories.IRequestRepository;
+import com.wora.smartbank2.services.IRequestService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -45,9 +47,11 @@ public class RequestRepository implements IRequestRepository {
         try {
             transaction.begin();
             entityManager.merge(request);
-            entityManager.flush();
+//            entityManager.flush();
+            System.out.println("FROM THE COMMIT");
             transaction.commit();
         } catch (Exception e) {
+            System.out.println("FROM THE ROLLBACK");
             transaction.rollback();
         } finally {
             if (entityManager != null) {
@@ -60,21 +64,27 @@ public class RequestRepository implements IRequestRepository {
     public Request findById(Long id) {
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
-        Request request = null;
         try {
             transaction.begin();
-            request = entityManager.find(Request.class, id);
+//            Request request = entityManager.find(Request.class, id);
+            TypedQuery<Request> query = entityManager.createQuery("""
+                        SELECT r FROM Request r
+                        JOIN r.status s WHERE r.id = :id
+                    """, Request.class);
+            query.setParameter("id", id);
+            Request r = query.getSingleResult();
+
+            System.out.println(r);
             transaction.commit();
-            return request;
+            return r;
         } catch (Exception e) {
             transaction.rollback();
+            throw new RuntimeException(e.getMessage());
         } finally {
             if (entityManager != null) {
                 entityManager.close();
             }
         }
-
-        return request;
     }
 
     @Override

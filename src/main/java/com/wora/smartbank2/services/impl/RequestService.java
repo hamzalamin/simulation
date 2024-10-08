@@ -10,7 +10,9 @@ import jakarta.validation.Validator;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class RequestService implements IRequestService {
     private final IRequestRepository requestRepository;
@@ -33,13 +35,22 @@ public class RequestService implements IRequestService {
 
     @Override
     public Request findById(Long id) {
-        return requestRepository.findById(id);
+        System.out.println("id + " + id);
+        Request request = requestRepository.findById(id);
+        System.out.println(request);
+        return request;
     }
 
     @Override
     public void create(Request request) {
         Set<ConstraintViolation<Request>> constraintViolations = validator.validate(request);
-        if(!constraintViolations.isEmpty()) {
+        if (!constraintViolations.isEmpty()) {
+            Map<String, String> errors = constraintViolations.stream()
+                    .collect(Collectors.toMap(
+                            e -> e.getPropertyPath().toString(),
+                            ConstraintViolation::getMessage
+                    ));
+            errors.forEach((k, v) -> System.err.println(k + " -> " + v));
             throw new RuntimeException("error in validation of request creation");
         }
         requestRepository.create(request);
@@ -48,7 +59,7 @@ public class RequestService implements IRequestService {
     @Override
     public void update(Request request) {
         Set<ConstraintViolation<Request>> constraintViolations = validator.validate(request);
-        if (!constraintViolations.isEmpty()){
+        if (!constraintViolations.isEmpty()) {
             throw new RuntimeException("error in Validation of update request");
         }
         requestRepository.update(request);
@@ -57,7 +68,7 @@ public class RequestService implements IRequestService {
     @Override
     public void delete(Long id) {
         Set<ConstraintViolation<Long>> constraintViolations = validator.validate(id);
-        if (!constraintViolations.isEmpty()){
+        if (!constraintViolations.isEmpty()) {
             throw new RuntimeException("error in Validation of Delete request");
         }
         requestRepository.delete(id);
@@ -66,7 +77,7 @@ public class RequestService implements IRequestService {
     @Override
     public List<Request> filterByDate(LocalDate birthDate) {
         Set<ConstraintViolation<LocalDate>> constraintViolations = validator.validate(birthDate);
-        if (!constraintViolations.isEmpty()){
+        if (!constraintViolations.isEmpty()) {
             throw new RuntimeException("error in Validation of filter by date request");
         }
         return requestRepository.filterByDate(birthDate);
@@ -75,7 +86,7 @@ public class RequestService implements IRequestService {
     @Override
     public List<Request> filterByStatus(CreditStatus creditStatus) {
         Set<ConstraintViolation<CreditStatus>> constraintViolations = validator.validate(creditStatus);
-        if (!constraintViolations.isEmpty()){
+        if (!constraintViolations.isEmpty()) {
             throw new RuntimeException("error in Validation of filter by status request");
         }
         return requestRepository.filterByStatus(creditStatus);
