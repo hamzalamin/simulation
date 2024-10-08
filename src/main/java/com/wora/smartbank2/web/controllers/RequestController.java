@@ -56,7 +56,7 @@ public class RequestController extends HttpServlet {
                     response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid action");
             }
         } else {
-            if (pathInfo == null || pathInfo.equals("/requests")) {
+            if (pathInfo == null || pathInfo.equals("/")) {
                 getAllRequests(request, response);
             } else {
                 getRequestById(request, response);
@@ -90,6 +90,7 @@ public class RequestController extends HttpServlet {
 
     private void getAllRequests(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Request> requests = requestService.findAll();
+        System.out.println("Number of requests found: " + requests.size());
         request.setAttribute("requests", requests);
         request.getRequestDispatcher("/WEB-INF/views/requests/allRequests.jsp").forward(request, response);
     }

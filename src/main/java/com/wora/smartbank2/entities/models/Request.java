@@ -72,8 +72,9 @@ public class Request {
     private boolean hasCredits;
 
     @ManyToOne
-    @JoinColumn(name = "status_id", nullable = false)
+    @JoinColumn(name = "status_id", nullable = true)
     private Status statusId;
+
 
     public Request(long id, String projectName, String userType, Double loanAmount, Double loanDuration, Double monthlyPayment, String email, String phone, Civility civility, String fName, String lName, String cin, LocalDate birthDate, LocalDate employmentStartDate, boolean hasCredits, Status statusId) {
         this.id = id;

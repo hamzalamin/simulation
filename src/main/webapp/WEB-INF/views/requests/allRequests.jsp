@@ -61,8 +61,7 @@
         </table>
     </div>
     <div class="actions">
-        <a href="${pageContext.request.contextPath}/WEB-INF/views/requests/create.jspreate.jsp" class="btn create-btn">Create New Request</a>
-        <a href="${pageContext.request.contextPath}/WEB-INF/views/requests/allRequests.jsp" class="btn all-requests-btn">All Requests</a>
+        <a href="${pageContext.request.contextPath}/requests?action=createForm" class="btn btn-primary">Create New Request</a>
     </div>
 </div>
 </body>

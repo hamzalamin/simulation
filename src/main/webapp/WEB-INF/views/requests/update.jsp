@@ -76,27 +76,27 @@
         </label>
     </div>
 
-    <h4>Avez-vous des crédits en cours ?</h4>
-    <div class="radio-group">
-        <label class="radio-label">
-            <input type="radio" name="creditStatus" value="PENDING" <c:if test="${request.creditStatus.name() == 'PENDING'}">checked</c:if>/>
-            <span class="radio-custom">
-                PENDING
-            </span>
-        </label>
-        <label class="radio-label">
-            <input type="radio" name="creditStatus" value="CANCELED" <c:if test="${request.creditStatus.name() == 'CANCELED'}">checked</c:if>/>
-            <span class="radio-custom">
-                CANCELED
-            </span>
-        </label>
-        <label class="radio-label">
-            <input type="radio" name="creditStatus" value="CONFIRMED" <c:if test="${request.creditStatus.name() == 'CONFIRMED'}">checked</c:if>/>
-            <span class="radio-custom">
-                CONFIRMED
-            </span>
-        </label>
-    </div>
+<%--    <h4>Avez-vous des crédits en cours ?</h4>--%>
+<%--    <div class="radio-group">--%>
+<%--        <label class="radio-label">--%>
+<%--            <input type="radio" name="creditStatus" value="PENDING" <c:if test="${request.creditStatus.name() == 'PENDING'}">checked</c:if>/>--%>
+<%--            <span class="radio-custom">--%>
+<%--                PENDING--%>
+<%--            </span>--%>
+<%--        </label>--%>
+<%--        <label class="radio-label">--%>
+<%--            <input type="radio" name="creditStatus" value="CANCELED" <c:if test="${request.creditStatus.name() == 'CANCELED'}">checked</c:if>/>--%>
+<%--            <span class="radio-custom">--%>
+<%--                CANCELED--%>
+<%--            </span>--%>
+<%--        </label>--%>
+<%--        <label class="radio-label">--%>
+<%--            <input type="radio" name="creditStatus" value="CONFIRMED" <c:if test="${request.creditStatus.name() == 'CONFIRMED'}">checked</c:if>/>--%>
+<%--            <span class="radio-custom">--%>
+<%--                CONFIRMED--%>
+<%--            </span>--%>
+<%--        </label>--%>
+<%--    </div>--%>
     <input type="submit" value="Update"/>
 </form>
 </body>
