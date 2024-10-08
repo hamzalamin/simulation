@@ -90,9 +90,11 @@ public class RequestStatusController extends HttpServlet {
         if (requestEntity != null) {
             List<Status> statusList = statusService.getAll();
             System.out.println("statuaaaaaaaaaaaaaat aaal7a9: " + statusList);
+            List<RequestStatus> requestStatusList = requestStatusService.findAll(requestEntity.getId());
 
             request.setAttribute("request", requestEntity);
             request.setAttribute("status", statusList);
+            request.setAttribute("requestStatusList", requestStatusList);
 
             request.getRequestDispatcher("/WEB-INF/views/requests/details.jsp").forward(request, response);
         } else {
@@ -109,7 +111,7 @@ public class RequestStatusController extends HttpServlet {
             RequestStatus newStatus = buildStatusParams(request);
             try {
                 requestStatusService.create(newStatus);
-                response.sendRedirect(request.getContextPath() + "/requests/status");
+                response.sendRedirect(request.getContextPath() + "/requests");
             } catch (RuntimeException e) {
                 request.setAttribute("error", e.getMessage());
                 request.getRequestDispatcher("/WEB-INF/views/requests/details.jsp").forward(request, response);

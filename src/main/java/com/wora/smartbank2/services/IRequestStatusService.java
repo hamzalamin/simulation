@@ -5,7 +5,8 @@ import com.wora.smartbank2.entities.models.RequestStatus;
 import java.util.List;
 
 public interface IRequestStatusService {
-    List<RequestStatus> findAll();
+    List<RequestStatus> findAll(Long requestId);
+
     void create(RequestStatus requestStatus);
 
 }

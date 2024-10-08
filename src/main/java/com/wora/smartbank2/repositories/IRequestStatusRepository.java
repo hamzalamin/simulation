@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface IRequestStatusRepository {
     void create(RequestStatus requestStatus);
-    List<RequestStatus> findAll();
+
+    List<RequestStatus> findAll(Long requestId);
 
 }

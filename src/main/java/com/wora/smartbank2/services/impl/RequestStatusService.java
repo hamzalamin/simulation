@@ -1,8 +1,6 @@
 package com.wora.smartbank2.services.impl;
 
 import com.wora.smartbank2.entities.models.RequestStatus;
-import com.wora.smartbank2.entities.models.Status;
-import com.wora.smartbank2.repositories.IRequestRepository;
 import com.wora.smartbank2.repositories.IRequestStatusRepository;
 import com.wora.smartbank2.services.IRequestStatusService;
 import jakarta.validation.ConstraintViolation;
@@ -22,9 +20,9 @@ public class RequestStatusService implements IRequestStatusService {
     }
 
     @Override
-    public List<RequestStatus> findAll() {
+    public List<RequestStatus> findAll(Long requestId) {
         try {
-            return repository.findAll();
+            return repository.findAll(requestId);
         } catch (Exception e) {
             e.getMessage();
             return new ArrayList<>();
@@ -34,7 +32,7 @@ public class RequestStatusService implements IRequestStatusService {
     @Override
     public void create(RequestStatus requestStatus) {
         Set<ConstraintViolation<RequestStatus>> constraintViolations = validator.validate(requestStatus);
-        if(!constraintViolations.isEmpty()) {
+        if (!constraintViolations.isEmpty()) {
             throw new RuntimeException("error in validation of Status creation");
         }
         repository.create(requestStatus);

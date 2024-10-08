@@ -37,18 +37,23 @@ public class RequestStatusRepository implements IRequestStatusRepository {
     }
 
     @Override
-    public List<RequestStatus> findAll() {
+    public List<RequestStatus> findAll(Long requestId) {
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         List<RequestStatus> requestStatus = null;
         try {
             transaction.begin();
-            requestStatus = entityManager.createQuery("SELECT r FROM RequestStatus r", RequestStatus.class).getResultList();
+            requestStatus = entityManager.createQuery("SELECT r FROM RequestStatus r WHERE r.request.id = :id", RequestStatus.class)
+                    .setParameter("id", requestId)
+                    .getResultList();
             transaction.commit();
 
             return requestStatus;
         } catch (Exception e) {
-            transaction.rollback();
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace(); // Print the exception for debugging
         } finally {
             if (entityManager != null) {
                 entityManager.close();
