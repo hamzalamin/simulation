@@ -91,35 +91,24 @@ public class RequestController extends HttpServlet {
     private void getAllRequests(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Request> requests = requestService.findAll();
         request.setAttribute("requests", requests);
-        request.getRequestDispatcher("/WEB-INF/views/allRequests.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/requests/allRequests.jsp").forward(request, response);
     }
 
     public void filterByDate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         LocalDate birthDate = Utils.getDateParameter(request, "birth_date", "yyyy-MM-dd");
-        if (birthDate == null) {
-            request.setAttribute("errorMessage", "Invalid date format. Please use YYYY-MM-DD.");
-            request.getRequestDispatcher("/WEB-INF/views/error.jsp").forward(request, response);
-            return;
-        }
 
         List<Request> requests = requestService.filterByDate(birthDate);
         request.setAttribute("requests", requests);
-        request.getRequestDispatcher("/WEB-INF/views/allRequests.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/requests/allRequests.jsp").forward(request, response);
     }
 
     public void filterByStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CreditStatus creditStatus = Utils.getEnumParameter(request, "creditstatus", CreditStatus.class);
 
-        if (creditStatus == null) {
-            request.setAttribute("errorMessage", "Invalid choice.");
-            request.getRequestDispatcher("/WEB-INF/views/error.jsp").forward(request, response);
-            return;
-        }
-
         List<Request> requests = requestService.filterByStatus(creditStatus);
         request.setAttribute("requests", requests);
-        request.getRequestDispatcher("/WEB-INF/views/allRequests.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/requests/allRequests.jsp").forward(request, response);
     }
 
 
@@ -197,7 +186,7 @@ public class RequestController extends HttpServlet {
     }
 
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/create.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/requests/create.jsp").forward(request, response);
     }
 
     private void showUpdateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -206,7 +195,7 @@ public class RequestController extends HttpServlet {
 
         if (requestObj != null) {
             request.setAttribute("request", requestObj);
-            request.getRequestDispatcher("/WEB-INF/views/update.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/requests/update.jsp").forward(request, response);
         } else {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
