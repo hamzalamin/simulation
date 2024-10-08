@@ -1,12 +1,9 @@
 package com.wora.smartbank2.web.controllers;
 
-import com.wora.smartbank2.entities.models.Request;
 import com.wora.smartbank2.entities.models.Status;
 import com.wora.smartbank2.repositories.IStatusRepository;
-import com.wora.smartbank2.repositories.impl.RequestRepository;
 import com.wora.smartbank2.repositories.impl.StatusRepository;
 import com.wora.smartbank2.services.IStatusService;
-import com.wora.smartbank2.services.impl.RequestService;
 import com.wora.smartbank2.services.impl.StatusService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
