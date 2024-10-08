@@ -13,6 +13,7 @@ import com.wora.smartbank2.services.IRequestService;
 import com.wora.smartbank2.services.IStatusService;
 import com.wora.smartbank2.services.impl.RequestService;
 
+import com.wora.smartbank2.services.impl.StatusService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -30,13 +31,14 @@ public class RequestController extends HttpServlet {
     private IRequestService requestService;
 
     private IStatusRepository statusRepository;
-    private IStatusService statusService;
+        private IStatusService statusService;
 
     @Override
     public void init() throws ServletException {
         this.requestRepository = new RequestRepository();
         this.statusRepository = new StatusRepository();
         this.requestService = new RequestService(requestRepository, Validation.buildDefaultValidatorFactory().getValidator());
+        this.statusService = new StatusService(statusRepository, Validation.buildDefaultValidatorFactory().getValidator());
     }
 
     @Override
@@ -194,8 +196,11 @@ public class RequestController extends HttpServlet {
         Long id = Long.parseLong(request.getParameter("id"));
         Request requestObj = requestService.findById(id);
 
-        if (requestObj != null) {
+        List<Status> status = statusService.getAll();
+
+        if (requestObj != null || status != null) {
             request.setAttribute("request", requestObj);
+            request.setAttribute("status", status);
             request.getRequestDispatcher("/WEB-INF/views/requests/update.jsp").forward(request, response);
         } else {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);

@@ -76,6 +76,15 @@
         </label>
     </div>
 
+    <label for="status">Status:</label>
+    <select id="status" name="status" required>
+        <c:forEach var="status" items="${status}">
+            <option value="${status.id}" >
+                    ${status.status}
+            </option>
+        </c:forEach>
+    </select><br/>
+
 <%--    <h4>Avez-vous des crédits en cours ?</h4>--%>
 <%--    <div class="radio-group">--%>
 <%--        <label class="radio-label">--%>
