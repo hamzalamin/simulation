@@ -14,41 +14,47 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/getAllStyle.css">
 </head>
 <body>
-<h1 class="title">Status</h1>
-<div border="1" class="table-container">
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Status Name</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="request" items="${status}">
+<div class="container">
+    <h1 class="title">Status</h1>
+    <div border="1" class="table-container">
+        <table>
+            <thead>
             <tr>
-                <td>${status.id}</td>
-                <td>${status.status}</td>
-                <td class="action-buttons">
-                    <a href="${pageContext.request.contextPath}/status/${status.id}" class="btn details-btn"><img
-                            class="icon" src="${pageContext.request.contextPath}/icons/detail.png"></a>
-                    <a href="${pageContext.request.contextPath}/status?action=updateStatusForm&id=${status.id}"
-                       class="btn update-btn">
-                        <img class="icon" src="${pageContext.request.contextPath}/icons/update.png">
-                    </a>
-
-                    <form action="${pageContext.request.contextPath}/status" method="post" class="delete-form">
-                        <input type="hidden" value="${request.id}" name="id">
-                        <input type="hidden" value="delete" name="action">
-                        <button class="btn delete-btn"><img class="icon" src="${pageContext.request.contextPath}/icons/delete.png">
-                        </button>
-                    </form>
-                </td>
+                <th>ID</th>
+                <th>Status Name</th>
+                <th>Action</th>
             </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-    <li><a href="${pageContext.request.contextPath}/status?action=createStatusForm" class="btn btn-primary">Create New Status</a></li>
+            </thead>
+            <tbody>
+            <c:forEach var="request" items="${status}">
+                <tr>
+                    <td>${status.id}</td>
+                    <td>${status.status}</td>
+                    <td class="action-buttons">
+                        <a href="${pageContext.request.contextPath}/status/${status.id}" class="btn details-btn"><img
+                                class="icon" src="${pageContext.request.contextPath}/icons/detail.png"></a>
+                        <a href="${pageContext.request.contextPath}/status?action=updateStatusForm&id=${status.id}"
+                           class="btn update-btn">
+                            <img class="icon" src="${pageContext.request.contextPath}/icons/update.png">
+                        </a>
+
+                        <form action="${pageContext.request.contextPath}/status" method="post" class="delete-form">
+                            <input type="hidden" value="${request.id}" name="id">
+                            <input type="hidden" value="delete" name="action">
+                            <button class="btn delete-btn"><img class="icon"
+                                                                src="${pageContext.request.contextPath}/icons/delete.png">
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
+    <div class="actions">
+        <a href="${pageContext.request.contextPath}/status?action=createStatusForm" class="btn btn-primary">Create
+            New Status</a>
+    </div>
 </div>
 </body>
 </html>
