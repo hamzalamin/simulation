@@ -100,7 +100,7 @@ public class StatusRepository implements IStatusRepository {
         List<Status> status = null;
         try {
             transaction.begin();
-            entityManager.createQuery("SELECT s FROM Status s", Status.class).getResultList();
+            status = entityManager.createQuery("SELECT s FROM Status s", Status.class).getResultList();
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
@@ -109,7 +109,6 @@ public class StatusRepository implements IStatusRepository {
                 entityManager.close();
             }
         }
-
 
         return status;
     }

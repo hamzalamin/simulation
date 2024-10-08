@@ -26,7 +26,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="request" items="${status}">
+            <c:forEach var="status" items="${status}">
                 <tr>
                     <td>${status.id}</td>
                     <td>${status.status}</td>

@@ -93,7 +93,7 @@ public class StatusController extends HttpServlet {
 
     private void getAllStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Status> status = statusService.getAll();
-        request.setAttribute("requests", status);
+        request.setAttribute("status", status);
         request.getRequestDispatcher("/WEB-INF/views/status/allStatus.jsp").forward(request, response);
     }
 
