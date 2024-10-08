@@ -76,14 +76,7 @@
         </label>
     </div>
 
-    <label for="status">Status:</label>
-    <select id="status" name="creditStatusId" required>
-        <c:forEach var="status" items="${status}">
-            <option value="${status.id}" <c:if test="${status.id == request.status.id}">selected</c:if>>
-                    ${status.status}
-            </option>
-        </c:forEach>
-    </select><br/>
+
 
     <input type="submit" value="Update"/>
 </form>

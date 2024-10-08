@@ -4,7 +4,6 @@ import com.wora.smartbank2.config.JPAUtil;
 import com.wora.smartbank2.entities.enums.CreditStatus;
 import com.wora.smartbank2.entities.models.Request;
 import com.wora.smartbank2.repositories.IRequestRepository;
-import com.wora.smartbank2.services.IRequestService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -47,11 +46,9 @@ public class RequestRepository implements IRequestRepository {
         try {
             transaction.begin();
             entityManager.merge(request);
-//            entityManager.flush();
-            System.out.println("FROM THE COMMIT");
             transaction.commit();
         } catch (Exception e) {
-            System.out.println("FROM THE ROLLBACK");
+            System.out.println("HI FROM THE ROLLBACK");
             transaction.rollback();
         } finally {
             if (entityManager != null) {
@@ -66,17 +63,17 @@ public class RequestRepository implements IRequestRepository {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
-//            Request request = entityManager.find(Request.class, id);
-            TypedQuery<Request> query = entityManager.createQuery("""
-                        SELECT r FROM Request r
-                        JOIN r.status s WHERE r.id = :id
-                    """, Request.class);
-            query.setParameter("id", id);
-            Request r = query.getSingleResult();
+            Request request = entityManager.find(Request.class, id);
+//            TypedQuery<Request> query = entityManager.createQuery("""
+//                        SELECT r FROM Request r
+//                        JOIN r.status s WHERE r.id = :id
+//                    """, Request.class);
+//            query.setParameter("id", id);
+//            Request r = query.getSingleResult();
 
-            System.out.println(r);
+//            System.out.println(r);
             transaction.commit();
-            return r;
+            return request;
         } catch (Exception e) {
             transaction.rollback();
             throw new RuntimeException(e.getMessage());

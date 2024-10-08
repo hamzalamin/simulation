@@ -25,6 +25,7 @@ import jakarta.validation.Validation;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet("/requests/*")
 public class RequestController extends HttpServlet {
@@ -139,7 +140,7 @@ public class RequestController extends HttpServlet {
         Request updatedRequest = buildRequestParams(request);
         updatedRequest.setId(id);
         requestService.update(updatedRequest);
-        System.out.println(updatedRequest);
+        System.out.println("l3aybat dupdate: " + updatedRequest);
         response.sendRedirect(request.getContextPath() + "/requests");
     }
 
@@ -180,7 +181,6 @@ public class RequestController extends HttpServlet {
         newRequest.setBirthDate(birthDate);
         newRequest.setEmploymentStartDate(localDate);
         newRequest.setHasCredits(hasCredits);
-        newRequest.setStatus(null);
 
         return newRequest;
     }
@@ -190,19 +190,25 @@ public class RequestController extends HttpServlet {
     }
 
     private void showUpdateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Long id = Long.parseLong(request.getParameter("id"));
-        Request requestObj = requestService.findById(id);
+        try {
+            Long id = Long.parseLong(request.getParameter("id"));
 
-        List<Status> status = statusService.getAll();
+            Request requestObj = requestService.findById(id);
+            List<Status> statusList = statusService.getAll();
+            System.out.println("status List is heeerere : " + statusList);
 
-        if (requestObj != null || status != null) {
-            request.setAttribute("status", status);
-            request.setAttribute("request", requestObj);
-            System.out.println("Request Object: " + requestObj);
-            request.getRequestDispatcher("/WEB-INF/views/requests/update.jsp").forward(request, response);
-        } else {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            if (requestObj != null && statusList != null) {
+                request.setAttribute("status", statusList);
+                request.setAttribute("request", requestObj);
+
+                request.getRequestDispatcher("/WEB-INF/views/requests/update.jsp").forward(request, response);
+            } else {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            }
+        } catch (NumberFormatException e) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid request ID");
         }
     }
+
 
 }

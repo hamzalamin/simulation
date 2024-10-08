@@ -75,5 +75,17 @@ public class Utils {
         return null;
     }
 
+    public static Long getLongParameter(HttpServletRequest request, String paramName) {
+        String paramValue = request.getParameter(paramName);
+        if (paramValue != null && !paramValue.trim().isEmpty()) {
+            try {
+                return Long.parseLong(paramValue);
+            } catch (NumberFormatException e) {
+                System.err.println("Invalid long value for parameter: " + paramName);
+            }
+        }
+        return null;
+    }
+
 
 }

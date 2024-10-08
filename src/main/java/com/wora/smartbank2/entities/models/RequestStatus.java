@@ -1,6 +1,7 @@
 package com.wora.smartbank2.entities.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -27,6 +28,9 @@ public class RequestStatus {
     }
 
     public RequestStatus() {}
+
+    public RequestStatus(Long id, @NotBlank String status) {
+    }
 
     public Long getId() {
         return id;

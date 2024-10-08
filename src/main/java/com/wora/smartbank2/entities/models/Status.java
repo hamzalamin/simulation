@@ -16,7 +16,7 @@ public class Status {
     @NotBlank
     private String status;
 
-    @OneToMany(mappedBy = "status", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "status", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<RequestStatus> requestStatuses;
 
 

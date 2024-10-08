@@ -70,7 +70,7 @@ public class Request {
     @Column(name = "has_credits", nullable = false)
     private boolean hasCredits;
 
-    @OneToMany(mappedBy = "request", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "request", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<RequestStatus> status;
 
     public void addStatus(RequestStatus requestStatus) {
