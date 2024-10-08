@@ -39,7 +39,7 @@
                         </a>
 
                         <form action="${pageContext.request.contextPath}/status" method="post" class="delete-form">
-                            <input type="hidden" value="${request.id}" name="id">
+                            <input type="hidden" value="${status.id}" name="id">
                             <input type="hidden" value="delete" name="action">
                             <button class="btn delete-btn"><img class="icon"
                                                                 src="${pageContext.request.contextPath}/icons/delete.png">
