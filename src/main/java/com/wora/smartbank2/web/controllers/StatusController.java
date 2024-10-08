@@ -87,7 +87,9 @@ public class StatusController extends HttpServlet {
             request.setAttribute("status", statusObj);
             request.getRequestDispatcher("/WEB-INF/views/status/update.jsp").forward(request, response);
         } else {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            if (!response.isCommitted()) {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Status not found for ID: " + id);
+            }
         }
     }
 
@@ -119,8 +121,16 @@ public class StatusController extends HttpServlet {
         Long id = Long.parseLong(request.getParameter("id"));
         Status updatedStatus = buildStatusParams(request);
         updatedStatus.setId(id);
-        statusService.update(updatedStatus);
-        System.out.println(updatedStatus);
+        try{
+            statusService.update(updatedStatus);
+            System.out.println(updatedStatus);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("error", "Failed to update status.");
+            request.getRequestDispatcher("/WEB-INF/views/status/update.jsp").forward(request, response);
+        }
+
         response.sendRedirect(request.getContextPath() + "/status");
     }
 

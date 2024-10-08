@@ -16,10 +16,10 @@
 
 <form class="update-form" action="${pageContext.request.contextPath}/status" method="POST">
     <input type="hidden" name="action" value="update"/>
-    <input type="hidden" name="id" value="${request.id}">
+    <input type="hidden" name="id" value="${status.id}">
 
-    <label for="status">Project Name:</label>
-    <input type="text" id="status" name="status" value="${request.status}" required/><br/>
+    <label for="status">Status Name:</label>
+    <input type="text" id="status" name="status" value="${status.status}" required/><br/>
 
     <input type="submit" value="Update"/>
 </form>

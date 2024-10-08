@@ -23,6 +23,10 @@ public class StatusService implements IStatusService {
 
     @Override
     public Status findById(Long id) {
+        Set<ConstraintViolation<Long>> constraintViolations = validator.validate(id);
+        if(!constraintViolations.isEmpty()) {
+            throw new RuntimeException("error in validation of Status creation");
+        }
         return repository.findById(id);
     }
 

@@ -62,7 +62,7 @@ public class StatusRepository implements IStatusRepository {
         Status status = null;
         try {
             transaction.begin();
-            entityManager.find(Request.class, id);
+            status = entityManager.find(Status.class, id);
             transaction.commit();
             return status;
         } catch (Exception e){
