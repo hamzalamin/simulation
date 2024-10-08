@@ -3,7 +3,6 @@ package com.wora.smartbank2.web.controllers;
 import com.wora.smartbank2.entities.enums.Civility;
 import com.wora.smartbank2.entities.enums.CreditStatus;
 import com.wora.smartbank2.entities.models.Request;
-import com.wora.smartbank2.entities.models.RequestStatus;
 import com.wora.smartbank2.entities.models.Status;
 import com.wora.smartbank2.helpers.Utils;
 import com.wora.smartbank2.repositories.IRequestRepository;
@@ -25,7 +24,6 @@ import jakarta.validation.Validation;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @WebServlet("/requests/*")
 public class RequestController extends HttpServlet {
@@ -33,7 +31,7 @@ public class RequestController extends HttpServlet {
     private IRequestService requestService;
 
     private IStatusRepository statusRepository;
-        private IStatusService statusService;
+    private IStatusService statusService;
 
     @Override
     public void init() throws ServletException {

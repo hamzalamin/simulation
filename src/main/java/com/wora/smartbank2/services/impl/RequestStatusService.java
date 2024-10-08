@@ -16,7 +16,7 @@ public class RequestStatusService implements IRequestStatusService {
     private final IRequestStatusRepository repository;
     private final Validator validator;
 
-    public RequestStatusService(IRequestStatusRepository repository1, IRequestStatusRepository repository, Validator validator) {
+    public RequestStatusService(IRequestStatusRepository repository, Validator validator) {
         this.repository = repository;
         this.validator = validator;
     }

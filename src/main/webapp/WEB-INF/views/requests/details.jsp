@@ -19,17 +19,17 @@
 <p>User Type: ${request.userType}</p>
 
 <h2>Update Status</h2>
-<form action="${pageContext.request.contextPath}/requests/updateStatus" method="POST">
-  <input type="hidden" name="id" value="${request.id}"/>
-
+<form action="${pageContext.request.contextPath}/request/status" method="POST">
+  <input type="hidden" name="requestId" value="${request.id}"/>
+  <input type="hidden" name="action" value="create"/>
   <label for="status">Select Status:</label>
   <select id="status" name="statusId" required>
-    <c:forEach var="status" items="${statuses}">
-      <option value="${status.id}" <c:if test="${status.id == request.status.id}">selected</c:if>>${status.status}</option>
+    <c:forEach var="status" items="${status}">
+      <option value="${status.id}">${status.status}</option>
     </c:forEach>
   </select><br/>
 
-  <input type="submit" value="Update Status"/>
+  <input type="submit" value="Create Status"/>
 </form>
 </body>
 </html>

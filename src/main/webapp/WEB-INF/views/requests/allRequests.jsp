@@ -44,7 +44,7 @@
                     <td>${request.email}</td>
                     <td>${request.phone}</td>
                     <td class="action-buttons">
-                        <a href="${pageContext.request.contextPath}/requests/${request.id}" class="btn details-btn"><img class="icon" src="${pageContext.request.contextPath}/icons/detail.png"></a>
+                        <a href="${pageContext.request.contextPath}/request/status?action=requestStatusForm&id=${request.id}" class="btn details-btn"><img class="icon" src="${pageContext.request.contextPath}/icons/detail.png"></a>
                         <a href="${pageContext.request.contextPath}/requests?action=updateForm&id=${request.id}" class="btn update-btn">
                             <img class="icon" src="${pageContext.request.contextPath}/icons/update.png">
                         </a>

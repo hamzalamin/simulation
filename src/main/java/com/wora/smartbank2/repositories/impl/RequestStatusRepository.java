@@ -1,7 +1,5 @@
 package com.wora.smartbank2.repositories.impl;
 
-import com.wora.smartbank2.config.JPAUtil;
-import com.wora.smartbank2.entities.models.Request;
 import com.wora.smartbank2.entities.models.RequestStatus;
 import com.wora.smartbank2.repositories.IRequestStatusRepository;
 import jakarta.persistence.EntityManager;
@@ -17,7 +15,6 @@ public class RequestStatusRepository implements IRequestStatusRepository {
         this.emf = emf;
     }
 
-
     @Override
     public void create(RequestStatus requestStatus) {
         EntityManager entityManager = emf.createEntityManager();
@@ -25,6 +22,7 @@ public class RequestStatusRepository implements IRequestStatusRepository {
 
         try {
             transaction.begin();
+//            System.out.println("request status lll : " + requestStatus);
             entityManager.persist(requestStatus);
             transaction.commit();
         } catch (Exception e) {

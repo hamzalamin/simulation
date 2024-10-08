@@ -27,7 +27,8 @@ public class RequestStatus {
         this.status = status;
     }
 
-    public RequestStatus() {}
+    public RequestStatus() {
+    }
 
     public RequestStatus(Long id, @NotBlank String status) {
     }
@@ -55,4 +56,13 @@ public class RequestStatus {
     public void setStatus(Status status) {
         this.status = status;
     }
+
+//    @Override
+//    public String toString() {
+//        return "RequestStatus{" +
+//                "id=" + id +
+//                ", request=" + request +
+//                ", status=" + status +
+//                '}';
+//    }
 }

@@ -29,7 +29,8 @@ public class Status {
         this.status = status;
     }
 
-    public Status() {}
+    public Status() {
+    }
 
     public Long getId() {
         return id;
@@ -55,5 +56,12 @@ public class Status {
         this.requestStatuses = requestStatuses;
     }
 
-
+//    @Override
+//    public String toString() {
+//        return "Status{" +
+//                "id=" + id +
+//                ", status='" + status + '\'' +
+//                ", requestStatuses=" + requestStatuses +
+//                '}';
+//    }
 }
