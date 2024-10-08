@@ -18,7 +18,7 @@
     <input type="hidden" name="action" value="update"/>
 
     <label for="status">Project Name:</label>
-    <input type="text" id="status" name="status" value="${request.status}" required/><br/>
+    <input type="text" id="status" name="status" required/><br/>
 
     <input type="submit" value="Update"/>
 </form>
