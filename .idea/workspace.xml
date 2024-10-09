@@ -11,7 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b732ed7c-845c-4a95-b326-732618f01856" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/services/impl/RequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/services/impl/RequestService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/wora/smartbank2/services/impl/RequestServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/wora/smartbank2/services/impl/RequestServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -79,6 +78,7 @@
     "JUnit.RequestServiceTest.findAll_ShouldHandleNullResponse.executor": "Run",
     "JUnit.RequestServiceTest.findAll_ShouldReturnAllRequestsWhenRequestsExists.executor": "Run",
     "JUnit.RequestServiceTest.findAll_ShouldReturnEmptyListWhenNoRequestsExist.executor": "Run",
+    "JUnit.RequestServiceTest.updateShouldUpdateSuccessfullyValidation.executor": "Run",
     "Maven.smartBank2 [clean,install].executor": "Run",
     "Maven.smartBank2 [clean].executor": "Run",
     "Maven.smartBank2 [install].executor": "Run",
@@ -129,7 +129,7 @@
       <command value="mvn clean install" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.RequestServiceTest.create_ShouldThrowRuntimeExceptionOnValidationError">
+  <component name="RunManager" selected="JUnit.RequestServiceTest.updateShouldUpdateSuccessfullyValidation">
     <configuration name="RequestServiceTest.create_ShouldThrowRuntimeExceptionOnValidationError" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="smartBank2" />
       <extension name="coverage">
@@ -194,7 +194,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RequestServiceTest.findAll_ShouldHandleNullResponse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RequestServiceTest.updateShouldUpdateSuccessfullyValidation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="smartBank2" />
       <extension name="coverage">
         <pattern>
@@ -204,7 +204,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.wora.smartbank2.services.impl" />
       <option name="MAIN_CLASS_NAME" value="com.wora.smartbank2.services.impl.RequestServiceTest" />
-      <option name="METHOD_NAME" value="findAll_ShouldHandleNullResponse" />
+      <option name="METHOD_NAME" value="updateShouldUpdateSuccessfullyValidation" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -300,11 +300,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.RequestServiceTest.updateShouldUpdateSuccessfullyValidation" />
         <item itemvalue="JUnit.RequestServiceTest.create_ShouldThrowRuntimeExceptionOnValidationError" />
         <item itemvalue="JUnit.RequestServiceTest.create_ShouldThrowRuntimeExceptionOnvalidationError" />
         <item itemvalue="JUnit.RequestServiceTest.create_shouldCreateSuccessfullyValidation" />
         <item itemvalue="JUnit.RequestServiceTest.create_shouldCreateSuccessfully" />
-        <item itemvalue="JUnit.RequestServiceTest.findAll_ShouldHandleNullResponse" />
       </list>
     </recent_temporary>
   </component>
@@ -341,7 +341,7 @@
       <workItem from="1728432621077" duration="319000" />
       <workItem from="1728432951783" duration="1309000" />
       <workItem from="1728434279071" duration="1454000" />
-      <workItem from="1728458407838" duration="10436000" />
+      <workItem from="1728458407838" duration="12485000" />
     </task>
     <servers />
   </component>

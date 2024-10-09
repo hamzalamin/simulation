@@ -129,5 +129,21 @@ class RequestServiceTest {
     }
 
 
+    @Test
+    @DisplayName("update() Should Update Successfully Validation")
+    void updateShouldUpdateSuccessfullyValidation(){
+        Request request = new Request();
+        request.setfName("hamza test");
+        request.setlName("lamin Testing");
+
+        doNothing().when(repository).update(any(Request.class));
+        when(validator.validate(request)).thenReturn(Set.of());
+
+        sut.update(request);
+        verify(repository).update(request);
+
+    }
+
+
 
 }
