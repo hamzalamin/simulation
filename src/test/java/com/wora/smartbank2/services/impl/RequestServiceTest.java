@@ -214,17 +214,26 @@ class RequestServiceTest {
         request.setfName("hamza test");
         request.setlName("lamin Testing");
 
-        // Mock repository returning a request
         when(repository.findById(requestId)).thenReturn(Optional.of(request));
 
-        // Call the method under test
         Request result = sut.findById(requestId);
 
-        // Assert that the result matches the expected request
         assertEquals(request, result);
 
-        // Verify that findById was called
         verify(repository).findById(requestId);
     }
+
+    @Test
+    @DisplayName("getById() Should Throw Exception When Entity Not Found")
+    void getByIdShouldThrowExceptionWhenEntityNotFound() {
+        Long requestId = 1L;
+
+        when(repository.findById(requestId)).thenReturn(Optional.empty());
+
+        assertThrows(RuntimeException.class, () -> sut.findById(requestId));
+
+        verify(repository).findById(requestId);
+    }
+
 
 }
