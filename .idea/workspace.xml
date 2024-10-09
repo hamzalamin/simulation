@@ -78,6 +78,10 @@
     "JUnit.RequestServiceTest.findAll_ShouldHandleNullResponse.executor": "Run",
     "JUnit.RequestServiceTest.findAll_ShouldReturnAllRequestsWhenRequestsExists.executor": "Run",
     "JUnit.RequestServiceTest.findAll_ShouldReturnEmptyListWhenNoRequestsExist.executor": "Run",
+    "JUnit.RequestServiceTest.updateShouldCallValidatorBeforeUpdate.executor": "Run",
+    "JUnit.RequestServiceTest.updateShouldNotUpdateWhenValidationFails.executor": "Run",
+    "JUnit.RequestServiceTest.updateShouldThrowExceptionWhenRepositoryThrowsException.executor": "Run",
+    "JUnit.RequestServiceTest.updateShouldThrowExceptionWhenRequestIsNull.executor": "Run",
     "JUnit.RequestServiceTest.updateShouldUpdateSuccessfullyValidation.executor": "Run",
     "Maven.smartBank2 [clean,install].executor": "Run",
     "Maven.smartBank2 [clean].executor": "Run",
@@ -129,7 +133,7 @@
       <command value="mvn clean install" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.RequestServiceTest.updateShouldUpdateSuccessfullyValidation">
+  <component name="RunManager" selected="JUnit.RequestServiceTest.deleteShouldThrowExceptionWhenEntityNotFound">
     <configuration name="RequestServiceTest.create_ShouldThrowRuntimeExceptionOnValidationError" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="smartBank2" />
       <extension name="coverage">
@@ -146,7 +150,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RequestServiceTest.create_ShouldThrowRuntimeExceptionOnvalidationError" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RequestServiceTest.deleteShouldDeleteSuccessfully" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="smartBank2" />
       <extension name="coverage">
         <pattern>
@@ -156,13 +160,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.wora.smartbank2.services.impl" />
       <option name="MAIN_CLASS_NAME" value="com.wora.smartbank2.services.impl.RequestServiceTest" />
-      <option name="METHOD_NAME" value="create_ShouldThrowRuntimeExceptionOnvalidationError" />
+      <option name="METHOD_NAME" value="deleteShouldDeleteSuccessfully" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RequestServiceTest.create_shouldCreateSuccessfully" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RequestServiceTest.deleteShouldThrowExceptionWhenEntityNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="smartBank2" />
       <extension name="coverage">
         <pattern>
@@ -172,13 +176,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.wora.smartbank2.services.impl" />
       <option name="MAIN_CLASS_NAME" value="com.wora.smartbank2.services.impl.RequestServiceTest" />
-      <option name="METHOD_NAME" value="create_shouldCreateSuccessfully" />
+      <option name="METHOD_NAME" value="deleteShouldThrowExceptionWhenEntityNotFound" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RequestServiceTest.create_shouldCreateSuccessfullyValidation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RequestServiceTest.updateShouldCallValidatorBeforeUpdate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="smartBank2" />
       <extension name="coverage">
         <pattern>
@@ -188,13 +192,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.wora.smartbank2.services.impl" />
       <option name="MAIN_CLASS_NAME" value="com.wora.smartbank2.services.impl.RequestServiceTest" />
-      <option name="METHOD_NAME" value="create_shouldCreateSuccessfullyValidation" />
+      <option name="METHOD_NAME" value="updateShouldCallValidatorBeforeUpdate" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RequestServiceTest.updateShouldUpdateSuccessfullyValidation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RequestServiceTest.updateShouldThrowExceptionWhenRequestIsNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="smartBank2" />
       <extension name="coverage">
         <pattern>
@@ -204,7 +208,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.wora.smartbank2.services.impl" />
       <option name="MAIN_CLASS_NAME" value="com.wora.smartbank2.services.impl.RequestServiceTest" />
-      <option name="METHOD_NAME" value="updateShouldUpdateSuccessfullyValidation" />
+      <option name="METHOD_NAME" value="updateShouldThrowExceptionWhenRequestIsNull" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -300,11 +304,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.RequestServiceTest.updateShouldUpdateSuccessfullyValidation" />
+        <item itemvalue="JUnit.RequestServiceTest.deleteShouldThrowExceptionWhenEntityNotFound" />
+        <item itemvalue="JUnit.RequestServiceTest.deleteShouldDeleteSuccessfully" />
         <item itemvalue="JUnit.RequestServiceTest.create_ShouldThrowRuntimeExceptionOnValidationError" />
-        <item itemvalue="JUnit.RequestServiceTest.create_ShouldThrowRuntimeExceptionOnvalidationError" />
-        <item itemvalue="JUnit.RequestServiceTest.create_shouldCreateSuccessfullyValidation" />
-        <item itemvalue="JUnit.RequestServiceTest.create_shouldCreateSuccessfully" />
+        <item itemvalue="JUnit.RequestServiceTest.updateShouldCallValidatorBeforeUpdate" />
+        <item itemvalue="JUnit.RequestServiceTest.updateShouldThrowExceptionWhenRequestIsNull" />
       </list>
     </recent_temporary>
   </component>
@@ -341,7 +345,8 @@
       <workItem from="1728432621077" duration="319000" />
       <workItem from="1728432951783" duration="1309000" />
       <workItem from="1728434279071" duration="1454000" />
-      <workItem from="1728458407838" duration="12485000" />
+      <workItem from="1728458407838" duration="12550000" />
+      <workItem from="1728497720771" duration="1430000" />
     </task>
     <servers />
   </component>

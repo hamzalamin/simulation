@@ -2,7 +2,9 @@ package com.wora.smartbank2.services.impl;
 
 import com.wora.smartbank2.entities.models.Request;
 import com.wora.smartbank2.repositories.impl.RequestRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ValidationException;
 import jakarta.validation.Validator;
 import jakarta.validation.constraints.Null;
 import net.bytebuddy.jar.asm.Handle;
@@ -113,13 +115,11 @@ class RequestServiceTest {
         request.setlName("");
         request.setfName("");
 
-        // Create a mock violation
         ConstraintViolation<Request> violation = mock(ConstraintViolation.class);
         String expected = "Name must not be empty";
         when(violation.getMessage()).thenReturn(expected);
         when(validator.validate(request)).thenReturn(Set.of(violation));
 
-        // Act & Assert
         RuntimeException exception = assertThrows(RuntimeException.class, () -> {
             sut.create(request);
         });
@@ -144,6 +144,64 @@ class RequestServiceTest {
 
     }
 
+    @Test
+    @DisplayName("update() Should Throw Exception When Repository Throws Exception")
+    void updateShouldThrowExceptionWhenRepositoryThrowsException() {
+        Request request = new Request();
+        request.setfName("hamza test");
+        request.setlName("lamin Testing");
 
+        when(validator.validate(request)).thenReturn(Set.of());
+
+        doThrow(new RuntimeException("Database error")).when(repository).update(any(Request.class));
+
+        assertThrows(RuntimeException.class, () -> sut.update(request));
+
+        verify(validator).validate(request);
+
+        verify(repository).update(request);
+    }
+
+    @Test
+    @DisplayName("update() Should Call Validator Before Update")
+    void updateShouldCallValidatorBeforeUpdate() {
+        Request request = new Request();
+        request.setfName("hamza test");
+        request.setlName("lamin Testing");
+
+        when(validator.validate(request)).thenReturn(Set.of());
+
+        sut.update(request);
+
+        InOrder inOrder = inOrder(validator, repository);
+        inOrder.verify(validator).validate(request);
+        inOrder.verify(repository).update(request);
+    }
+
+
+    @Test
+    @DisplayName("delete() Should Delete Successfully When Request is Valid")
+    void deleteShouldDeleteSuccessfully() {
+        Long requestId = 1L;
+
+        doNothing().when(repository).delete(requestId);
+
+        sut.delete(requestId);
+
+        verify(repository).delete(requestId);
+    }
+
+
+    @Test
+    @DisplayName("delete() Should Throw Exception When Entity Not Found")
+    void deleteShouldThrowExceptionWhenEntityNotFound() {
+        Long requestId = 1L;
+
+        doThrow(new EntityNotFoundException("Request not found")).when(repository).delete(requestId);
+
+        assertThrows(EntityNotFoundException.class, () -> sut.delete(requestId));
+
+        verify(repository).delete(requestId);
+    }
 
 }
