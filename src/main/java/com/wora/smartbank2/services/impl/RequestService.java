@@ -10,6 +10,7 @@ import jakarta.validation.Validator;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public class RequestService implements IRequestService {
@@ -33,10 +34,8 @@ public class RequestService implements IRequestService {
 
     @Override
     public Request findById(Long id) {
-        System.out.println("id + " + id);
-        Request request = requestRepository.findById(id);
-        System.out.println(request);
-        return request;
+        return requestRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("request with id "+ id + " not found"));
     }
 
     @Override

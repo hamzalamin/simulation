@@ -5,11 +5,12 @@ import com.wora.smartbank2.entities.models.Request;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface IRequestRepository {
     void create(Request request);
     void update(Request request);
-    Request findById(Long id);
+    Optional<Request> findById(Long id);
     void delete(Long id);
     List<Request> findAll();
     List<Request> filterByDate(LocalDate birthDate);

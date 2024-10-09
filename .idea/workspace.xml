@@ -11,6 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b732ed7c-845c-4a95-b326-732618f01856" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/repositories/IRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/repositories/IRequestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/repositories/impl/RequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/repositories/impl/RequestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/services/IRequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/services/IRequestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/services/impl/RequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/services/impl/RequestService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/wora/smartbank2/services/impl/RequestServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/wora/smartbank2/services/impl/RequestServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,6 +78,8 @@
     "JUnit.RequestServiceTest.create_ShouldThrowRuntimeExceptionOnvalidationError.executor": "Run",
     "JUnit.RequestServiceTest.create_shouldCreateSuccessfully.executor": "Run",
     "JUnit.RequestServiceTest.create_shouldCreateSuccessfullyValidation.executor": "Run",
+    "JUnit.RequestServiceTest.deleteShouldDeleteSuccessfully.executor": "Run",
+    "JUnit.RequestServiceTest.deleteShouldThrowExceptionWhenEntityNotFound.executor": "Run",
     "JUnit.RequestServiceTest.executor": "Run",
     "JUnit.RequestServiceTest.findAll_ShouldHandleNullResponse.executor": "Run",
     "JUnit.RequestServiceTest.findAll_ShouldReturnAllRequestsWhenRequestsExists.executor": "Run",
@@ -346,7 +352,7 @@
       <workItem from="1728432951783" duration="1309000" />
       <workItem from="1728434279071" duration="1454000" />
       <workItem from="1728458407838" duration="12550000" />
-      <workItem from="1728497720771" duration="1430000" />
+      <workItem from="1728497720771" duration="2050000" />
     </task>
     <servers />
   </component>

@@ -16,6 +16,7 @@ import org.mockito.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -202,6 +203,28 @@ class RequestServiceTest {
         assertThrows(EntityNotFoundException.class, () -> sut.delete(requestId));
 
         verify(repository).delete(requestId);
+    }
+
+    @Test
+    @DisplayName("getById() Should Return Entity Successfully")
+    void getByIdShouldReturnEntitySuccessfully() {
+        Long requestId = 1L;
+
+        Request request = new Request();
+        request.setfName("hamza test");
+        request.setlName("lamin Testing");
+
+        // Mock repository returning a request
+        when(repository.findById(requestId)).thenReturn(Optional.of(request));
+
+        // Call the method under test
+        Request result = sut.findById(requestId);
+
+        // Assert that the result matches the expected request
+        assertEquals(request, result);
+
+        // Verify that findById was called
+        verify(repository).findById(requestId);
     }
 
 }

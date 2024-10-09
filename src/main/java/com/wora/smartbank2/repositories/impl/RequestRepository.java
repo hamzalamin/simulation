@@ -11,6 +11,7 @@ import jakarta.persistence.TypedQuery;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public class RequestRepository implements IRequestRepository {
     private final EntityManagerFactory emf;
@@ -58,22 +59,14 @@ public class RequestRepository implements IRequestRepository {
     }
 
     @Override
-    public Request findById(Long id) {
+    public Optional<Request> findById(Long id) {
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
             Request request = entityManager.find(Request.class, id);
-//            TypedQuery<Request> query = entityManager.createQuery("""
-//                        SELECT r FROM Request r
-//                        JOIN r.status s WHERE r.id = :id
-//                    """, Request.class);
-//            query.setParameter("id", id);
-//            Request r = query.getSingleResult();
-
-//            System.out.println(r);
             transaction.commit();
-            return request;
+            return Optional.ofNullable(request);
         } catch (Exception e) {
             transaction.rollback();
             throw new RuntimeException(e.getMessage());

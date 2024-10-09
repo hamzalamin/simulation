@@ -9,6 +9,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 
 import java.util.List;
+import java.util.Optional;
 
 public class StatusRepository implements IStatusRepository {
     private final EntityManagerFactory emf;
@@ -56,23 +57,22 @@ public class StatusRepository implements IStatusRepository {
     }
 
     @Override
-    public Status findById(Long id) {
+    public Optional<Status> findById(Long id) {
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
-        Status status = null;
         try {
             transaction.begin();
-            status = entityManager.find(Status.class, id);
+            Status status = entityManager.find(Status.class, id);
             transaction.commit();
-            return status;
+            return Optional.ofNullable(status);
         } catch (Exception e){
             transaction.rollback();
+            throw new RuntimeException(e.getMessage());
         }finally {
             if (entityManager != null){
                 entityManager.close();
             }
         }
-        return status;
     }
 
     @Override
