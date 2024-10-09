@@ -41,16 +41,12 @@ public class RequestService implements IRequestService {
 
     @Override
     public void create(Request request) {
-        Set<ConstraintViolation<Request>> constraintViolations = validator.validate(request);
-        if (!constraintViolations.isEmpty()) {
-//            Map<String, String> errors = constraintViolations.stream()
-//                    .collect(Collectors.toMap(
-//                            e -> e.getPropertyPath().toString(),
-//                            ConstraintViolation::getMessage
-//                    ));
-//            errors.forEach((k, v) -> System.err.println(k + " -> " + v));
-            throw new RuntimeException("error in validation of request creation");
+        Set<ConstraintViolation<Request>> violations = validator.validate(request);
+        if (!violations.isEmpty()) {
+            String errorMessage = violations.iterator().next().getMessage();
+            throw new RuntimeException(errorMessage);
         }
+
         requestRepository.create(request);
     }
 

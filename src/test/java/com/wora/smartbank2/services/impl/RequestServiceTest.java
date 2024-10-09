@@ -2,6 +2,7 @@ package com.wora.smartbank2.services.impl;
 
 import com.wora.smartbank2.entities.models.Request;
 import com.wora.smartbank2.repositories.impl.RequestRepository;
+import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import jakarta.validation.constraints.Null;
 import net.bytebuddy.jar.asm.Handle;
@@ -13,6 +14,7 @@ import org.mockito.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
@@ -70,6 +72,62 @@ class RequestServiceTest {
 
         assertNull(actual);
     }
+
+    @Test
+    @DisplayName("create() Should create successfully")
+    void create_shouldCreateSuccessfully(){
+        //arrange
+        Request expected = new Request();
+        expected.setlName("testing");
+        expected.setfName("testname");
+            //mocking
+        when(validator.validate(expected)).thenReturn(Set.of());
+        doNothing().when(repository).create(expected);
+        //act
+        sut.create(expected);
+        //assert
+        verify(repository).create(expected);
+
+    }
+
+    @Test
+    @DisplayName("create() Should create successfully Validation")
+    void create_shouldCreateSuccessfullyValidation(){
+        Request expected = new Request();
+        expected.setlName("testing");
+        expected.setfName("testname");
+
+        doNothing().when(repository).create(any(Request.class));
+        when(validator.validate(expected)).thenReturn(Set.of());
+
+        sut.create(expected);
+
+        verify(repository).create(expected);
+    }
+
+    @Test
+    @DisplayName("create() Should throw RuntimeException on validation error")
+    void create_ShouldThrowRuntimeExceptionOnValidationError() {
+        // Arrange
+        Request request = new Request();
+        request.setlName("");
+        request.setfName("");
+
+        // Create a mock violation
+        ConstraintViolation<Request> violation = mock(ConstraintViolation.class);
+        String expected = "Name must not be empty";
+        when(violation.getMessage()).thenReturn(expected);
+        when(validator.validate(request)).thenReturn(Set.of(violation));
+
+        // Act & Assert
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            sut.create(request);
+        });
+
+        // Assert
+        assertEquals(expected, exception.getMessage());
+    }
+
 
 
 }
