@@ -10,9 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b732ed7c-845c-4a95-b326-732618f01856" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/wora/smartbank2/services/impl/RequestServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/entities/models/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/entities/models/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/services/impl/RequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/services/impl/RequestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/wora/smartbank2/services/impl/RequestServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/wora/smartbank2/services/impl/RequestServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,9 +35,6 @@
         <option value="JUnit5 Test Class" />
       </list>
     </option>
-  </component>
-  <component name="FormatOnSaveOptions">
-    <option name="myRunOnSave" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -58,9 +57,6 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="OptimizeOnSaveOptions">
-    <option name="myRunOnSave" value="true" />
-  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -77,6 +73,12 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
+    "JUnit.RequestServiceTest.create_shouldCreateSuccessfully.executor": "Run",
+    "JUnit.RequestServiceTest.executor": "Run",
+    "JUnit.RequestServiceTest.findAll_ShouldHandleNullResponse.executor": "Run",
+    "JUnit.RequestServiceTest.findAll_ShouldReturnAllRequestsWhenRequestsExists.executor": "Run",
+    "JUnit.RequestServiceTest.findAll_ShouldReturnEmptyListWhenNoRequestsExist.executor": "Run",
+    "Maven.smartBank2 [clean,install].executor": "Run",
     "Maven.smartBank2 [clean].executor": "Run",
     "Maven.smartBank2 [install].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -97,8 +99,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "actions.on.save",
+    "settings.editor.selected.configurable": "editor.preferences.import",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -122,7 +123,91 @@
       <recent name="com.wora.smartbank2.services.impl" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean install" />
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.RequestServiceTest.create_shouldCreateSuccessfully">
+    <configuration name="RequestServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="smartBank2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wora.smartbank2.services.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.wora.smartbank2.services.impl" />
+      <option name="MAIN_CLASS_NAME" value="com.wora.smartbank2.services.impl.RequestServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RequestServiceTest.create_shouldCreateSuccessfully" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="smartBank2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wora.smartbank2.services.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.wora.smartbank2.services.impl" />
+      <option name="MAIN_CLASS_NAME" value="com.wora.smartbank2.services.impl.RequestServiceTest" />
+      <option name="METHOD_NAME" value="create_shouldCreateSuccessfully" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RequestServiceTest.findAll_ShouldHandleNullResponse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="smartBank2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wora.smartbank2.services.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.wora.smartbank2.services.impl" />
+      <option name="MAIN_CLASS_NAME" value="com.wora.smartbank2.services.impl.RequestServiceTest" />
+      <option name="METHOD_NAME" value="findAll_ShouldHandleNullResponse" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RequestServiceTest.findAll_ShouldReturnAllRequestsWhenRequestsExists" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="smartBank2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wora.smartbank2.services.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.wora.smartbank2.services.impl" />
+      <option name="MAIN_CLASS_NAME" value="com.wora.smartbank2.services.impl.RequestServiceTest" />
+      <option name="METHOD_NAME" value="findAll_ShouldReturnAllRequestsWhenRequestsExists" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RequestServiceTest.findAll_ShouldReturnEmptyListWhenNoRequestsExist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="smartBank2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wora.smartbank2.services.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.wora.smartbank2.services.impl" />
+      <option name="MAIN_CLASS_NAME" value="com.wora.smartbank2.services.impl.RequestServiceTest" />
+      <option name="METHOD_NAME" value="findAll_ShouldReturnEmptyListWhenNoRequestsExist" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Tomcat 10.1.30" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.30" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080" />
       <option name="UPDATING_POLICY" value="restart-server" />
@@ -211,6 +296,15 @@
         </option>
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.RequestServiceTest.create_shouldCreateSuccessfully" />
+        <item itemvalue="JUnit.RequestServiceTest.findAll_ShouldHandleNullResponse" />
+        <item itemvalue="JUnit.RequestServiceTest.findAll_ShouldReturnEmptyListWhenNoRequestsExist" />
+        <item itemvalue="JUnit.RequestServiceTest.findAll_ShouldReturnAllRequestsWhenRequestsExists" />
+        <item itemvalue="JUnit.RequestServiceTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -241,6 +335,11 @@
       <workItem from="1728138095533" duration="27648000" />
       <workItem from="1728305891150" duration="16324000" />
       <workItem from="1728371856468" duration="34065000" />
+      <workItem from="1728431067194" duration="1529000" />
+      <workItem from="1728432621077" duration="319000" />
+      <workItem from="1728432951783" duration="1309000" />
+      <workItem from="1728434279071" duration="1454000" />
+      <workItem from="1728458407838" duration="7144000" />
     </task>
     <servers />
   </component>

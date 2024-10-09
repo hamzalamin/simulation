@@ -4,6 +4,7 @@ import com.wora.smartbank2.entities.enums.Civility;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class Request {
     private Double monthlyPayment;
 
     @NotBlank
-    @Column(name = "email" ,nullable = false, length = 255)
+    @Column(name = "email", nullable = false, length = 255)
     private String email;
 
     @NotBlank
@@ -73,11 +74,6 @@ public class Request {
     @OneToMany(mappedBy = "request", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<RequestStatus> status;
 
-    public void addStatus(RequestStatus requestStatus) {
-        this.status.add(requestStatus);
-        requestStatus.setRequest(this);
-    }
-
     public Request(long id, String projectName, String userType, Double loanAmount, Double loanDuration,
                    Double monthlyPayment, String email, String phone, Civility civility, String fName,
                    String lName, String cin, LocalDate birthDate, LocalDate employmentStartDate,
@@ -99,7 +95,13 @@ public class Request {
         this.hasCredits = hasCredits;
         this.status = status;
     }
+
     public Request() {
+    }
+
+    public void addStatus(RequestStatus requestStatus) {
+        this.status.add(requestStatus);
+        requestStatus.setRequest(this);
     }
 
     public long getId() {
@@ -223,7 +225,7 @@ public class Request {
         this.hasCredits = hasCredits;
     }
 
-    public  List<RequestStatus>  getStatus() {
+    public List<RequestStatus> getStatus() {
         return status;
     }
 
