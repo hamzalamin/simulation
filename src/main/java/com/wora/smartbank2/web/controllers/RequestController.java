@@ -46,9 +46,6 @@ public class RequestController extends HttpServlet {
         String pathInfo = request.getPathInfo();
         String action = request.getParameter("action");
 
-//        String statusId = request.getParameter("status");
-//        String projectName = request.getParameter("projectName");
-
 
         if (action != null) {
             switch (action) {
@@ -66,8 +63,6 @@ public class RequestController extends HttpServlet {
             }
         } else {
             if (pathInfo == null || pathInfo.equals("/")) {
-                List<Status> statuses = statusService.getAll();
-                request.setAttribute("statuses", statuses);
                 getAllRequests(request, response);
             } else {
                 getRequestById(request, response);
@@ -105,6 +100,8 @@ public class RequestController extends HttpServlet {
     private void getAllRequests(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Request> requests = requestService.findAll();
         System.out.println("Number of requests found: " + requests.size());
+        List<Status> statuses = statusService.getAll();
+        request.setAttribute("statuses", statuses);
         request.setAttribute("requests", requests);
         request.getRequestDispatcher("/WEB-INF/views/requests/allRequests.jsp").forward(request, response);
     }
@@ -123,8 +120,7 @@ public class RequestController extends HttpServlet {
         String statusParam = request.getParameter("status");
 
         if (statusParam == null || statusParam.isEmpty()) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Status parameter is missing or empty");
-            return;
+            getAllRequests(request, response);
         }
 
         Long statusId;
