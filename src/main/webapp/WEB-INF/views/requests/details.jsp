@@ -41,6 +41,7 @@
         <th>project name</th>
         <th>Status</th>
         <th>Status description</th>
+        <th>Date</th>
     </tr>
     </thead>
     <tbody>
@@ -49,6 +50,7 @@
             <td>${requestStatus.request.projectName}</td>
             <td>${requestStatus.status.status}</td>
             <td>${requestStatus.description}</td>
+            <td>${requestStatus.date}</td>
         </tr>
     </c:forEach>
     </tbody>

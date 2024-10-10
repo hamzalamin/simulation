@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "request_status")
 public class RequestStatus {
@@ -25,10 +27,15 @@ public class RequestStatus {
     @Column(name = "description" , nullable = true)
     private String description;
 
-    public RequestStatus(Long id, Request request, Status status) {
+    @NotNull
+    @Column(name = "date")
+    private LocalDate date = LocalDate.now();
+
+    public RequestStatus(Long id, Request request, Status status, String description) {
         this.id = id;
         this.request = request;
         this.status = status;
+        this.description = description;
     }
 
     public RequestStatus() {
@@ -67,6 +74,14 @@ public class RequestStatus {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     //    @Override
