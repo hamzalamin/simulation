@@ -21,6 +21,10 @@ public class RequestStatus {
     @JoinColumn(name = "status_id", nullable = true)
     private Status status;
 
+    @NotBlank
+    @Column(name = "description" , nullable = true)
+    private String description;
+
     public RequestStatus(Long id, Request request, Status status) {
         this.id = id;
         this.request = request;
@@ -57,7 +61,15 @@ public class RequestStatus {
         this.status = status;
     }
 
-//    @Override
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    //    @Override
 //    public String toString() {
 //        return "RequestStatus{" +
 //                "id=" + id +

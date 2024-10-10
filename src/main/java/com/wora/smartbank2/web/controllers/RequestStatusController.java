@@ -122,6 +122,7 @@ public class RequestStatusController extends HttpServlet {
     private RequestStatus buildStatusParams(HttpServletRequest request) {
         Long statusId = Long.parseLong(request.getParameter("statusId"));
         Long requestId = Long.parseLong(request.getParameter("requestId"));
+        String description = request.getParameter("description");
 
         Status status = statusService.findById(statusId);
         Request request1 = requestService.findById(requestId);
@@ -130,6 +131,7 @@ public class RequestStatusController extends HttpServlet {
 
         requestStatus.setStatus(status);
         requestStatus.setRequest(request1);
+        requestStatus.setDescription(description);
         return requestStatus;
     }
 

@@ -11,7 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b732ed7c-845c-4a95-b326-732618f01856" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/repositories/impl/RequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/repositories/impl/RequestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/entities/models/RequestStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/entities/models/RequestStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/web/controllers/RequestStatusController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/web/controllers/RequestStatusController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/requests/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/requests/details.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,51 +69,51 @@
     <option name="openDirectoriesWithSingleClick" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;JUnit.RequestServiceTest.create_ShouldThrowRuntimeExceptionOnValidationError.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RequestServiceTest.create_ShouldThrowRuntimeExceptionOnvalidationError.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RequestServiceTest.create_shouldCreateSuccessfully.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RequestServiceTest.create_shouldCreateSuccessfullyValidation.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RequestServiceTest.deleteShouldDeleteSuccessfully.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RequestServiceTest.deleteShouldThrowExceptionWhenEntityNotFound.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RequestServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RequestServiceTest.findAll_ShouldHandleNullResponse.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RequestServiceTest.findAll_ShouldReturnAllRequestsWhenRequestsExists.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RequestServiceTest.findAll_ShouldReturnEmptyListWhenNoRequestsExist.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RequestServiceTest.getByIdShouldReturnEntitySuccessfully.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RequestServiceTest.getByIdShouldThrowExceptionWhenEntityNotFound.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RequestServiceTest.updateShouldCallValidatorBeforeUpdate.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RequestServiceTest.updateShouldNotUpdateWhenValidationFails.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RequestServiceTest.updateShouldThrowExceptionWhenRepositoryThrowsException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RequestServiceTest.updateShouldThrowExceptionWhenRequestIsNull.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RequestServiceTest.updateShouldUpdateSuccessfullyValidation.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.smartBank2 [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.smartBank2 [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.smartBank2 [install].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Tomcat Server.Tomcat 10.1.30.executor&quot;: &quot;Run&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;filter&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/hamza/IdeaProjects/smartBank2/src/main/java/com/wora/smartbank2&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.import&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JUnit.RequestServiceTest.create_ShouldThrowRuntimeExceptionOnValidationError.executor": "Run",
+    "JUnit.RequestServiceTest.create_ShouldThrowRuntimeExceptionOnvalidationError.executor": "Run",
+    "JUnit.RequestServiceTest.create_shouldCreateSuccessfully.executor": "Run",
+    "JUnit.RequestServiceTest.create_shouldCreateSuccessfullyValidation.executor": "Run",
+    "JUnit.RequestServiceTest.deleteShouldDeleteSuccessfully.executor": "Run",
+    "JUnit.RequestServiceTest.deleteShouldThrowExceptionWhenEntityNotFound.executor": "Run",
+    "JUnit.RequestServiceTest.executor": "Run",
+    "JUnit.RequestServiceTest.findAll_ShouldHandleNullResponse.executor": "Run",
+    "JUnit.RequestServiceTest.findAll_ShouldReturnAllRequestsWhenRequestsExists.executor": "Run",
+    "JUnit.RequestServiceTest.findAll_ShouldReturnEmptyListWhenNoRequestsExist.executor": "Run",
+    "JUnit.RequestServiceTest.getByIdShouldReturnEntitySuccessfully.executor": "Run",
+    "JUnit.RequestServiceTest.getByIdShouldThrowExceptionWhenEntityNotFound.executor": "Run",
+    "JUnit.RequestServiceTest.updateShouldCallValidatorBeforeUpdate.executor": "Run",
+    "JUnit.RequestServiceTest.updateShouldNotUpdateWhenValidationFails.executor": "Run",
+    "JUnit.RequestServiceTest.updateShouldThrowExceptionWhenRepositoryThrowsException.executor": "Run",
+    "JUnit.RequestServiceTest.updateShouldThrowExceptionWhenRequestIsNull.executor": "Run",
+    "JUnit.RequestServiceTest.updateShouldUpdateSuccessfullyValidation.executor": "Run",
+    "Maven.smartBank2 [clean,install].executor": "Run",
+    "Maven.smartBank2 [clean].executor": "Run",
+    "Maven.smartBank2 [install].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Tomcat Server.Tomcat 10.1.30.executor": "Run",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "description",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/hamza/IdeaProjects/smartBank2/src/main/java/com/wora/smartbank2",
+    "list.type.of.created.stylesheet": "SCSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "editor.preferences.import",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\hamza\IdeaProjects\smartBank2\src\main\java\com\wora\smartbank2" />

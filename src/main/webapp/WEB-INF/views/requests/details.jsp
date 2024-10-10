@@ -28,6 +28,8 @@
             <option value="${status.id}">${status.status}</option>
         </c:forEach>
     </select><br/>
+    <label for="status">Status Description:</label>
+    <input type="text" name="description" id="description" class="description">
 
     <input type="submit" value="Create Status"/>
 </form>
@@ -36,15 +38,17 @@
 <table border="1">
     <thead>
     <tr>
-        <th>Status</th>
         <th>project name</th>
+        <th>Status</th>
+        <th>Status description</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach var="requestStatus" items="${requestStatusList}">
         <tr>
-            <td>${requestStatus.status.status}</td>
             <td>${requestStatus.request.projectName}</td>
+            <td>${requestStatus.status.status}</td>
+            <td>${requestStatus.description}</td>
         </tr>
     </c:forEach>
     </tbody>
