@@ -9,7 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b732ed7c-845c-4a95-b326-732618f01856" name="Changes" comment="" />
+    <list default="true" id="b732ed7c-845c-4a95-b326-732618f01856" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/repositories/IRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/repositories/IRequestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/repositories/impl/RequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/repositories/impl/RequestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/services/IRequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/services/IRequestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/services/impl/RequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/services/impl/RequestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/web/controllers/RequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wora/smartbank2/web/controllers/RequestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/requests/allRequests.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/requests/allRequests.jsp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,6 +86,7 @@
     "JUnit.RequestServiceTest.findAll_ShouldReturnAllRequestsWhenRequestsExists.executor": "Run",
     "JUnit.RequestServiceTest.findAll_ShouldReturnEmptyListWhenNoRequestsExist.executor": "Run",
     "JUnit.RequestServiceTest.getByIdShouldReturnEntitySuccessfully.executor": "Run",
+    "JUnit.RequestServiceTest.getByIdShouldThrowExceptionWhenEntityNotFound.executor": "Run",
     "JUnit.RequestServiceTest.updateShouldCallValidatorBeforeUpdate.executor": "Run",
     "JUnit.RequestServiceTest.updateShouldNotUpdateWhenValidationFails.executor": "Run",
     "JUnit.RequestServiceTest.updateShouldThrowExceptionWhenRepositoryThrowsException.executor": "Run",
@@ -91,7 +100,7 @@
     "Tomcat Server.Tomcat 10.1.30.executor": "Run",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "unitTesting",
+    "git-widget-placeholder": "filter",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/hamza/IdeaProjects/smartBank2/src/main/java/com/wora/smartbank2",
@@ -133,7 +142,7 @@
       <command value="mvn clean install" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.RequestServiceTest.getByIdShouldThrowExceptionWhenEntityNotFound">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.30">
     <configuration name="RequestServiceTest.create_ShouldThrowRuntimeExceptionOnValidationError" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="smartBank2" />
       <extension name="coverage">

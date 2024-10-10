@@ -17,6 +17,17 @@
 <body>
 <div class="container">
     <h1 class="title">Requests List 123</h1>
+    <form action="${pageContext.request.contextPath}/requests" method="post" class="filter-form">
+        <label for="status">Status:</label>
+        <input type="hidden" name="action" value="filterByStatus">
+        <select name="status" id="status">
+            <option value="">Select Status</option>
+            <c:forEach var="statuses" items="${statuses}">
+                <option value="${statuses.id}">${statuses.status}</option>
+            </c:forEach>
+        </select>
+        <button type="submit" class="btn filter-btn">Filter</button>
+    </form>
     <div border="1" class="table-container">
         <table>
             <thead>

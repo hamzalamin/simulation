@@ -3,6 +3,7 @@ package com.wora.smartbank2.repositories.impl;
 import com.wora.smartbank2.config.JPAUtil;
 import com.wora.smartbank2.entities.enums.CreditStatus;
 import com.wora.smartbank2.entities.models.Request;
+import com.wora.smartbank2.entities.models.Status;
 import com.wora.smartbank2.repositories.IRequestRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -10,6 +11,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -143,28 +145,34 @@ public class RequestRepository implements IRequestRepository {
     }
 
     @Override
-    public List<Request> filterByStatus(CreditStatus creditStatus) {
+    public List<Request> filterByStatus(String status) {
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
-        List<Request> requests = null;
         try {
             transaction.begin();
-            requests = entityManager.createQuery(
-                            "SELECT r FROM Request r WHERE r.creditStatus = :creditStatus", Request.class)
-                    .setParameter("creditStatus", creditStatus)
+            List<Request> requests = entityManager.createQuery(
+                            "SELECT r FROM Request r " +
+                                    "INNER JOIN r.status rs " +
+                                    "INNER JOIN rs.status s " +
+                                    "WHERE s.status = :status", Request.class)
+                    .setParameter("status", status)
                     .getResultList();
+
             transaction.commit();
+            System.out.println("yoo from the commit, size: " + requests.size());
+            return requests;
         } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
+            System.out.println("Exception occurred: " + e.getMessage());
+            transaction.rollback();
+            System.out.println("Yoo from the rollback");
+            return Collections.emptyList();
         } finally {
             if (entityManager != null) {
                 entityManager.close();
             }
         }
-        return requests;
     }
+
+
 
 }

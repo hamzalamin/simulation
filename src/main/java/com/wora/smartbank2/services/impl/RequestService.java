@@ -2,6 +2,7 @@ package com.wora.smartbank2.services.impl;
 
 import com.wora.smartbank2.entities.enums.CreditStatus;
 import com.wora.smartbank2.entities.models.Request;
+import com.wora.smartbank2.entities.models.Status;
 import com.wora.smartbank2.repositories.IRequestRepository;
 import com.wora.smartbank2.services.IRequestService;
 import jakarta.validation.ConstraintViolation;
@@ -77,12 +78,14 @@ public class RequestService implements IRequestService {
     }
 
     @Override
-    public List<Request> filterByStatus(CreditStatus creditStatus) {
-        Set<ConstraintViolation<CreditStatus>> constraintViolations = validator.validate(creditStatus);
+    public List<Request> filterByStatus(Status status) {
+        Set<ConstraintViolation<Status>> constraintViolations = validator.validate(status);
         if (!constraintViolations.isEmpty()) {
-            throw new RuntimeException("error in Validation of filter by status request");
+            throw new RuntimeException("Error in validation of filter by status request");
         }
-        return requestRepository.filterByStatus(creditStatus);
+
+        String statusString = status.getStatus();
+        return requestRepository.filterByStatus(statusString);
     }
 
 }

@@ -46,6 +46,10 @@ public class RequestController extends HttpServlet {
         String pathInfo = request.getPathInfo();
         String action = request.getParameter("action");
 
+//        String statusId = request.getParameter("status");
+//        String projectName = request.getParameter("projectName");
+
+
         if (action != null) {
             switch (action) {
                 case "createForm":
@@ -54,11 +58,16 @@ public class RequestController extends HttpServlet {
                 case "updateForm":
                     showUpdateForm(request, response);
                     break;
+                case "filterByStatus":
+                    filterByStatus(request, response);
+                    break;
                 default:
                     response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid action");
             }
         } else {
             if (pathInfo == null || pathInfo.equals("/")) {
+                List<Status> statuses = statusService.getAll();
+                request.setAttribute("statuses", statuses);
                 getAllRequests(request, response);
             } else {
                 getRequestById(request, response);
@@ -80,6 +89,9 @@ public class RequestController extends HttpServlet {
                     break;
                 case "delete":
                     deleteRequest(request, response);
+                    break;
+                case "filterByStatus":
+                    filterByStatus(request, response);
                     break;
                 default:
                     response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid action");
@@ -107,12 +119,40 @@ public class RequestController extends HttpServlet {
     }
 
     public void filterByStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        CreditStatus creditStatus = Utils.getEnumParameter(request, "creditstatus", CreditStatus.class);
+        System.out.println("Filter by Status called yooooo");
+        String statusParam = request.getParameter("status");
 
-        List<Request> requests = requestService.filterByStatus(creditStatus);
+        if (statusParam == null || statusParam.isEmpty()) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Status parameter is missing or empty");
+            return;
+        }
+
+        Long statusId;
+
+        try {
+            statusId = Long.parseLong(statusParam);
+        } catch (NumberFormatException e) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid status ID format");
+            return;
+        }
+
+        Status status = statusService.findById(statusId);
+
+        if (status == null) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid status value");
+            return;
+        }
+        List<Request> requests = requestService.filterByStatus(status);
+        List<Status> statuses = statusService.getAll();
         request.setAttribute("requests", requests);
+        request.setAttribute("statuses", statuses);
+
         request.getRequestDispatcher("/WEB-INF/views/requests/allRequests.jsp").forward(request, response);
     }
+
+
+
+
 
 
 
