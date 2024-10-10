@@ -1,7 +1,6 @@
 package com.wora.smartbank2.web.controllers;
 
 import com.wora.smartbank2.entities.enums.Civility;
-import com.wora.smartbank2.entities.enums.CreditStatus;
 import com.wora.smartbank2.entities.models.Request;
 import com.wora.smartbank2.entities.models.Status;
 import com.wora.smartbank2.helpers.Utils;
@@ -12,7 +11,6 @@ import com.wora.smartbank2.repositories.impl.StatusRepository;
 import com.wora.smartbank2.services.IRequestService;
 import com.wora.smartbank2.services.IStatusService;
 import com.wora.smartbank2.services.impl.RequestService;
-
 import com.wora.smartbank2.services.impl.StatusService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,7 +18,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Validation;
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
@@ -88,6 +85,9 @@ public class RequestController extends HttpServlet {
                 case "filterByStatus":
                     filterByStatus(request, response);
                     break;
+                case "filterByDate":
+                    filterByDate(request, response);
+                    break;
                 default:
                     response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid action");
             }
@@ -109,6 +109,9 @@ public class RequestController extends HttpServlet {
     public void filterByDate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         LocalDate birthDate = Utils.getDateParameter(request, "birth_date", "yyyy-MM-dd");
+        if (birthDate == null){
+            getAllRequests(request, response);
+        }
 
         List<Request> requests = requestService.filterByDate(birthDate);
         request.setAttribute("requests", requests);
@@ -145,11 +148,6 @@ public class RequestController extends HttpServlet {
 
         request.getRequestDispatcher("/WEB-INF/views/requests/allRequests.jsp").forward(request, response);
     }
-
-
-
-
-
 
 
     private void getRequestById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -243,6 +241,5 @@ public class RequestController extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid request ID");
         }
     }
-
 
 }

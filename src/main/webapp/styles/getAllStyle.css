@@ -65,11 +65,7 @@ tbody tr:hover {
   filter: invert(0);
 }
 
-.details-btn {
-}
 
-.update-btn {
-}
 
 .delete-btn {
   background-color: #fff;
@@ -102,3 +98,5 @@ tbody tr:hover {
 .actions .btn:hover {
   background-color: #333;
 }
+
+
