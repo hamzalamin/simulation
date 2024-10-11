@@ -1,5 +1,6 @@
 package com.wora.smartbank2.web.controllers;
 
+import com.wora.smartbank2.entities.dtos.ValidationDto;
 import com.wora.smartbank2.entities.enums.Civility;
 import com.wora.smartbank2.entities.models.Request;
 import com.wora.smartbank2.entities.models.Status;
@@ -8,8 +9,10 @@ import com.wora.smartbank2.repositories.IRequestRepository;
 import com.wora.smartbank2.repositories.IStatusRepository;
 import com.wora.smartbank2.repositories.impl.RequestRepository;
 import com.wora.smartbank2.repositories.impl.StatusRepository;
+import com.wora.smartbank2.services.ICalculValidationService;
 import com.wora.smartbank2.services.IRequestService;
 import com.wora.smartbank2.services.IStatusService;
+import com.wora.smartbank2.services.impl.CalculValidationService;
 import com.wora.smartbank2.services.impl.RequestService;
 import com.wora.smartbank2.services.impl.StatusService;
 import jakarta.inject.Inject;
@@ -35,6 +38,11 @@ public class RequestController extends HttpServlet {
     private IStatusRepository statusRepository;
     @Inject
     private IStatusService statusService;
+
+    @Inject
+    private  ICalculValidationService calculValidationService;
+    @Inject
+    private ValidationDto validationDto;
 
 //    @Override
 //    public void init() throws ServletException {
@@ -169,6 +177,10 @@ public class RequestController extends HttpServlet {
 
     private void createRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Request newRequest = buildRequestParams(request);
+        ValidationDto validatedCalculation = calculValidationService.calculate(validationDto);
+        newRequest.setLoanAmount(validatedCalculation.amount());
+        newRequest.setMonthlyPayment(validatedCalculation.monthly());
+        newRequest.setLoanDuration(validatedCalculation.duration());
         requestService.create(newRequest);
         response.sendRedirect(request.getContextPath() + "/requests");
     }
