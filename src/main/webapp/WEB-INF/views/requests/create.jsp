@@ -269,8 +269,9 @@
 
         showStep(currentStep);
     });
-
-        document.addEventListener("DOMContentLoaded", () => {
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
         const amountRange = document.querySelector("#custom-range1");
         const amountInput = document.querySelector("#range-value1");
         const durationRange = document.querySelector("#custom-range2");
@@ -282,35 +283,35 @@
         const monthlyRate = taxRate / 12 / 100;
 
         const updateCalculations = () => {
-        let amount = parseFloat(amountRange.value);
-        let duration = parseInt(durationRange.value);
-        let monthlyPayment = (amount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -duration));
+            let amount = parseFloat(amountRange.value);
+            let duration = parseInt(durationRange.value);
+            let monthlyPayment = (amount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -duration));
 
-        monthlyInput.value = monthlyPayment.toFixed(2);
-        monthlyRange.value = monthlyPayment.toFixed(2);
-    };
+            monthlyInput.value = monthlyPayment.toFixed(2);
+            monthlyRange.value = monthlyPayment.toFixed(2);
+        };
 
         amountRange.addEventListener("input", () => {
-        amountInput.value = amountRange.value;
-        updateCalculations();
-    });
+            amountInput.value = amountRange.value;
+            updateCalculations();
+        });
 
         durationRange.addEventListener("input", () => {
-        durationInput.value = durationRange.value;
-        updateCalculations();
-    });
+            durationInput.value = durationRange.value;
+            updateCalculations();
+        });
 
         monthlyRange.addEventListener("input", () => {
-        monthlyInput.value = monthlyRange.value;
-    });
+            monthlyInput.value = monthlyRange.value;
+        });
 
         document.querySelector("#loan-form").addEventListener("submit", (e) => {
-        e.preventDefault();
-        const amount = amountRange.value;
-        const duration = durationRange.value;
-        const monthlyPayment = monthlyInput.value;
-        console.log(`Amount: ${amount}, Duration: ${duration}, Monthly Payment: ${monthlyPayment}`);
-    });
+            e.preventDefault();
+            const amount = amountRange.value;
+            const duration = durationRange.value;
+            const monthlyPayment = monthlyInput.value;
+            console.log(`Amount: ${amount}, Duration: ${duration}, Monthly Payment: ${monthlyPayment}`);
+        });
     });
 
     document.addEventListener("DOMContentLoaded", function () {
