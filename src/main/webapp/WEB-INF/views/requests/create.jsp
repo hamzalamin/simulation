@@ -269,8 +269,7 @@
 
         showStep(currentStep);
     });
-</script>
-<script>
+
         document.addEventListener("DOMContentLoaded", () => {
         const amountRange = document.querySelector("#custom-range1");
         const amountInput = document.querySelector("#range-value1");
@@ -291,7 +290,6 @@
         monthlyRange.value = monthlyPayment.toFixed(2);
     };
 
-        // Input event listeners
         amountRange.addEventListener("input", () => {
         amountInput.value = amountRange.value;
         updateCalculations();
@@ -304,17 +302,14 @@
 
         monthlyRange.addEventListener("input", () => {
         monthlyInput.value = monthlyRange.value;
-        // Here you could also implement the reverse calculation if needed
     });
 
-        // Form submission handler
         document.querySelector("#loan-form").addEventListener("submit", (e) => {
-        e.preventDefault(); // Prevent default form submission
+        e.preventDefault();
         const amount = amountRange.value;
         const duration = durationRange.value;
         const monthlyPayment = monthlyInput.value;
         console.log(`Amount: ${amount}, Duration: ${duration}, Monthly Payment: ${monthlyPayment}`);
-        // You can handle form data here (e.g., send to server or display result)
     });
     });
 

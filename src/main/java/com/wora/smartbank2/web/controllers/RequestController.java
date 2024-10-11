@@ -41,8 +41,6 @@ public class RequestController extends HttpServlet {
 
     @Inject
     private  ICalculValidationService calculValidationService;
-    @Inject
-    private ValidationDto validationDto;
 
 //    @Override
 //    public void init() throws ServletException {
@@ -177,6 +175,7 @@ public class RequestController extends HttpServlet {
 
     private void createRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Request newRequest = buildRequestParams(request);
+        ValidationDto validationDto = new ValidationDto(newRequest.getLoanAmount(), newRequest.getLoanDuration(), newRequest.getMonthlyPayment());
         ValidationDto validatedCalculation = calculValidationService.calculate(validationDto);
         newRequest.setLoanAmount(validatedCalculation.amount());
         newRequest.setMonthlyPayment(validatedCalculation.monthly());
