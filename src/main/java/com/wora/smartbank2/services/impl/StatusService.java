@@ -4,21 +4,30 @@ import com.wora.smartbank2.entities.models.Request;
 import com.wora.smartbank2.entities.models.Status;
 import com.wora.smartbank2.repositories.IStatusRepository;
 import com.wora.smartbank2.services.IStatusService;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+@ApplicationScoped
 public class StatusService implements IStatusService {
     private final IStatusRepository repository;
     private final Validator validator;
 
+//    public  StatusService(){
+//        this.repository = null;
+//        this.validator = null;
+//    }
 
-    public StatusService(IStatusRepository repository, Validator validator) {
+    @Inject
+    public StatusService(IStatusRepository repository) {
         this.repository = repository;
-        this.validator = validator;
+        this.validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 
     @Override

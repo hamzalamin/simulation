@@ -1,18 +1,22 @@
 package com.wora.smartbank2.repositories.impl;
 
+import com.wora.smartbank2.config.JPAUtil;
 import com.wora.smartbank2.entities.models.RequestStatus;
 import com.wora.smartbank2.repositories.IRequestStatusRepository;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 
 import java.util.List;
 
+@ApplicationScoped
 public class RequestStatusRepository implements IRequestStatusRepository {
     private final EntityManagerFactory emf;
 
-    public RequestStatusRepository(EntityManagerFactory emf) {
-        this.emf = emf;
+    public RequestStatusRepository() {
+        this.emf = JPAUtil.entityManagerFactory();
     }
 
     @Override

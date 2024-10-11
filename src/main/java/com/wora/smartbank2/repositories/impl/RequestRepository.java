@@ -5,6 +5,8 @@ import com.wora.smartbank2.entities.enums.CreditStatus;
 import com.wora.smartbank2.entities.models.Request;
 import com.wora.smartbank2.entities.models.Status;
 import com.wora.smartbank2.repositories.IRequestRepository;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Default;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -15,6 +17,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+@ApplicationScoped
 public class RequestRepository implements IRequestRepository {
     private final EntityManagerFactory emf;
 
@@ -172,7 +175,6 @@ public class RequestRepository implements IRequestRepository {
             }
         }
     }
-
 
 
 }

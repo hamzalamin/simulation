@@ -12,31 +12,37 @@ import com.wora.smartbank2.services.IRequestService;
 import com.wora.smartbank2.services.IStatusService;
 import com.wora.smartbank2.services.impl.RequestService;
 import com.wora.smartbank2.services.impl.StatusService;
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Validation;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
 @WebServlet("/requests/*")
 public class RequestController extends HttpServlet {
+    @Inject
     private IRequestRepository requestRepository;
+    @Inject
     private IRequestService requestService;
 
+    @Inject
     private IStatusRepository statusRepository;
+    @Inject
     private IStatusService statusService;
 
-    @Override
-    public void init() throws ServletException {
-        this.requestRepository = new RequestRepository();
-        this.statusRepository = new StatusRepository();
-        this.requestService = new RequestService(requestRepository, Validation.buildDefaultValidatorFactory().getValidator());
-        this.statusService = new StatusService(statusRepository, Validation.buildDefaultValidatorFactory().getValidator());
-    }
+//    @Override
+//    public void init() throws ServletException {
+//        this.requestRepository = new RequestRepository();
+//        this.statusRepository = new StatusRepository();
+//        this.requestService = new RequestService(requestRepository, Validation.buildDefaultValidatorFactory().getValidator());
+//        this.statusService = new StatusService(statusRepository, Validation.buildDefaultValidatorFactory().getValidator());
+//    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

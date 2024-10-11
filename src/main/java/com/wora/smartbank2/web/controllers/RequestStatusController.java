@@ -17,6 +17,7 @@ import com.wora.smartbank2.services.IStatusService;
 import com.wora.smartbank2.services.impl.RequestService;
 import com.wora.smartbank2.services.impl.RequestStatusService;
 import com.wora.smartbank2.services.impl.StatusService;
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -29,27 +30,33 @@ import java.util.List;
 
 @WebServlet("/request/status/*")
 public class RequestStatusController extends HttpServlet {
+    @Inject
     private IRequestStatusRepository requestStatusRepository;
+    @Inject
     private IRequestStatusService requestStatusService;
 
+    @Inject
     private IRequestRepository requestRepository;
+    @Inject
     private IRequestService requestService;
 
+    @Inject
     private IStatusRepository statusRepository;
+    @Inject
     private IStatusService statusService;
 
     @Override
     public void init() throws ServletException {
-        this.requestStatusRepository = new RequestStatusRepository(JPAUtil.entityManagerFactory());
+//        this.requestStatusRepository = new RequestStatusRepository(JPAUtil.entityManagerFactory());
 
-        this.requestRepository = new RequestRepository();
-        this.requestService = new RequestService(requestRepository, Validation.buildDefaultValidatorFactory().getValidator());
+//        this.requestRepository = new RequestRepository();
+//        this.requestService = new RequestService(requestRepository, Validation.buildDefaultValidatorFactory().getValidator());
 
-        this.requestStatusService = new RequestStatusService(requestStatusRepository,
-                Validation.buildDefaultValidatorFactory().getValidator());
+//        this.requestStatusService = new RequestStatusService(requestStatusRepository,
+//                Validation.buildDefaultValidatorFactory().getValidator());
 
-        this.statusRepository = new StatusRepository();
-        this.statusService = new StatusService(statusRepository, Validation.buildDefaultValidatorFactory().getValidator());
+//        this.statusRepository = new StatusRepository();
+//        this.statusService = new StatusService(statusRepository, Validation.buildDefaultValidatorFactory().getValidator());
     }
 
 

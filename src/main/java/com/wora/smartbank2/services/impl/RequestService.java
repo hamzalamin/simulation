@@ -5,19 +5,22 @@ import com.wora.smartbank2.entities.models.Request;
 import com.wora.smartbank2.entities.models.Status;
 import com.wora.smartbank2.repositories.IRequestRepository;
 import com.wora.smartbank2.services.IRequestService;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
+@ApplicationScoped
 public class RequestService implements IRequestService {
     private final IRequestRepository requestRepository;
     private final Validator validator;
 
+    @Inject
     public RequestService(IRequestRepository requestRepository, Validator validator) {
         this.requestRepository = requestRepository;
         this.validator = validator;
@@ -36,7 +39,7 @@ public class RequestService implements IRequestService {
     @Override
     public Request findById(Long id) {
         return requestRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("request with id "+ id + " not found"));
+                .orElseThrow(() -> new RuntimeException("request with id " + id + " not found"));
     }
 
     @Override

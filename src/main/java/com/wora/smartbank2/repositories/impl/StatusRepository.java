@@ -1,9 +1,9 @@
 package com.wora.smartbank2.repositories.impl;
 
 import com.wora.smartbank2.config.JPAUtil;
-import com.wora.smartbank2.entities.models.Request;
 import com.wora.smartbank2.entities.models.Status;
 import com.wora.smartbank2.repositories.IStatusRepository;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -11,6 +11,7 @@ import jakarta.persistence.EntityTransaction;
 import java.util.List;
 import java.util.Optional;
 
+@ApplicationScoped
 public class StatusRepository implements IStatusRepository {
     private final EntityManagerFactory emf;
 
