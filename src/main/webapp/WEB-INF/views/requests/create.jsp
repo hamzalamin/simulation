@@ -63,7 +63,7 @@
                     <input
                             type="range"
                             id="custom-range1"
-                            min="0"
+                            min="1000"
                             max="1000000"
                             value="50000"
                             name="loan_duration"
@@ -271,54 +271,52 @@
     });
 </script>
 <script>
-    const interestRate = 12 / 100;
+        document.addEventListener("DOMContentLoaded", () => {
+        const amountRange = document.querySelector("#custom-range1");
+        const amountInput = document.querySelector("#range-value1");
+        const durationRange = document.querySelector("#custom-range2");
+        const durationInput = document.querySelector("#range-value2");
+        const monthlyRange = document.querySelector("#custom-range3");
+        const monthlyInput = document.querySelector("#range-value3");
 
-    function updateInputValue(rangeId) {
-        const range = document.getElementById(`custom-range${rangeId}`);
-        const input = document.getElementById(`range-value${rangeId}`);
-        input.value = range.value;
-        if (rangeId === 1 || rangeId === 2) {
-            calculateMensualites();
-        }
-    }
+        const taxRate = 12;
+        const monthlyRate = taxRate / 12 / 100;
 
-    function updateRangeValue(rangeId) {
-        const input = document.getElementById(`range-value${rangeId}`);
-        const range = document.getElementById(`custom-range${rangeId}`);
-        range.value = input.value;
-        if (rangeId === 1 || rangeId === 2) {
-            calculateMensualites();
-        }
-    }
+        const updateCalculations = () => {
+        let amount = parseFloat(amountRange.value);
+        let duration = parseInt(durationRange.value);
+        let monthlyPayment = (amount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -duration));
 
-    function updateMensualites() {
-        const mensualite = parseFloat(
-            document.getElementById("range-value3").value
-        );
-        const n = parseFloat(document.getElementById("range-value2").value);
-        const t = interestRate / 12;
+        monthlyInput.value = monthlyPayment.toFixed(2);
+        monthlyRange.value = monthlyPayment.toFixed(2);
+    };
 
-        if (mensualite > 0 && n > 0) {
-            const K = (mensualite * (1 - Math.pow(1 + t, -n))) / t;
-            document.getElementById("range-value1").value = K.toFixed(2);
-            document.getElementById("custom-range1").value = K.toFixed(2);
-        }
-    }
+        // Input event listeners
+        amountRange.addEventListener("input", () => {
+        amountInput.value = amountRange.value;
+        updateCalculations();
+    });
 
-    function calculateMensualites() {
-        const K = parseFloat(document.getElementById("range-value1").value);
-        const n = parseFloat(document.getElementById("range-value2").value);
-        const t = interestRate / 12;
+        durationRange.addEventListener("input", () => {
+        durationInput.value = durationRange.value;
+        updateCalculations();
+    });
 
-        if (K > 0 && n > 0) {
-            const mensualite = (K * t) / (1 - Math.pow(1 + t, -n));
-            document.getElementById("range-value3").value = mensualite.toFixed(2);
-            document.getElementById("custom-range3").value =
-                mensualite.toFixed(2);
-        }
-    }
+        monthlyRange.addEventListener("input", () => {
+        monthlyInput.value = monthlyRange.value;
+        // Here you could also implement the reverse calculation if needed
+    });
 
-    calculateMensualites();
+        // Form submission handler
+        document.querySelector("#loan-form").addEventListener("submit", (e) => {
+        e.preventDefault(); // Prevent default form submission
+        const amount = amountRange.value;
+        const duration = durationRange.value;
+        const monthlyPayment = monthlyInput.value;
+        console.log(`Amount: ${amount}, Duration: ${duration}, Monthly Payment: ${monthlyPayment}`);
+        // You can handle form data here (e.g., send to server or display result)
+    });
+    });
 
     document.addEventListener("DOMContentLoaded", function () {
         let currentStep = 0;
