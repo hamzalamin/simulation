@@ -1,11 +1,10 @@
 package com.wora.smartbank2.web.controllers;
 
-import com.wora.smartbank2.entities.models.RequestStatus;
 import com.wora.smartbank2.entities.models.Status;
 import com.wora.smartbank2.repositories.IStatusRepository;
-import com.wora.smartbank2.repositories.impl.StatusRepository;
+import com.wora.smartbank2.seeders.impl.DatabaseSeeder;
 import com.wora.smartbank2.services.IStatusService;
-import com.wora.smartbank2.services.impl.StatusService;
+import jakarta.annotation.PostConstruct;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -24,11 +23,6 @@ public class StatusController extends HttpServlet {
     @Inject
     private IStatusService statusService;
 
-    @Override
-    public void init() throws ServletException {
-//        this.statusRepository = new StatusRepository();
-//        this.statusService = new StatusService(statusRepository, Validation.buildDefaultValidatorFactory().getValidator());
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,8 +33,10 @@ public class StatusController extends HttpServlet {
             switch (action){
                 case "createStatusForm":
                     showCreateStatusForm(request, response);
+                    break;
                 case "updateStatusForm":
                     showUpdateStatusForm(request, response);
+                    break;
                 default:
                     response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid action");
             }

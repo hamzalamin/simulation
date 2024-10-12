@@ -3,7 +3,9 @@ package com.wora.smartbank2.services.impl;
 import com.wora.smartbank2.entities.models.Request;
 import com.wora.smartbank2.entities.models.Status;
 import com.wora.smartbank2.repositories.IStatusRepository;
+import com.wora.smartbank2.seeders.IDatabaseSeeder;
 import com.wora.smartbank2.services.IStatusService;
+import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.validation.ConstraintViolation;
@@ -18,15 +20,27 @@ import java.util.Set;
 public class StatusService implements IStatusService {
     private final IStatusRepository repository;
     private final Validator validator;
+    private final IDatabaseSeeder seeder;
 
 //    public  StatusService(){
 //        this.repository = null;
 //        this.validator = null;
 //    }
 
+    @PostConstruct
+    public void init() {
+        try {
+            seeder.statusSeed();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     @Inject
-    public StatusService(IStatusRepository repository) {
+    public StatusService(IStatusRepository repository, IDatabaseSeeder seeder) {
         this.repository = repository;
+        this.seeder = seeder;
         this.validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 
