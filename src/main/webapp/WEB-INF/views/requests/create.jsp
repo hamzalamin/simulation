@@ -229,8 +229,20 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td class="text-primary"></td>
+            <tr style="display: inline-grid;">
+                <td id="recap-project"></td>
+                <td id="recap-user-type"></td>
+                <td id="recap-loan-amount"></td>
+                <td id="recap-loan-duration"></td>
+                <td id="recap-monthly-payment"></td>
+                <td id="recap-email"></td>
+                <td id="recap-phone"></td>
+                <td id="recap-civility"></td>
+                <td id="recap-name"></td>
+                <td id="recap-firstname"></td>
+                <td id="recap-cin"></td>
+                <td id="recap-monthly-income"></td>
+                <td id="recap-credits"></td>
             </tr>
             </tbody>
         </table>
@@ -370,6 +382,69 @@
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(String(email).toLowerCase());
     }
+
+
+    function updateRecap(fieldId, recapId) {
+        const input = document.getElementById(fieldId);
+        const recap = document.getElementById(recapId);
+
+        recap.textContent = input.value;
+    }
+
+    function updateRangeValue(stepNumber) {
+        updateRecap('range-value' + stepNumber, 'recap-loan-amount');
+    }
+
+    function updateInputValue(stepNumber) {
+        updateRecap('range-value' + stepNumber, stepNumber === 1 ? 'recap-loan-amount' : 'recap-loan-duration');
+    }
+
+    document.getElementById('project_name').addEventListener('change', function() {
+        updateRecap('project_name', 'recap-project');
+    });
+
+    document.getElementById('user_type').addEventListener('change', function() {
+        updateRecap('user_type', 'recap-user-type');
+    });
+
+    document.getElementById('email').addEventListener('input', function() {
+        updateRecap('email', 'recap-email');
+    });
+
+    document.getElementById('phone').addEventListener('input', function() {
+        updateRecap('phone', 'recap-phone');
+    });
+
+    document.getElementsByName('civility').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const selected = document.querySelector('input[name="civility"]:checked');
+            document.getElementById('recap-civility').textContent = selected.value;
+        });
+    });
+
+    document.getElementById('name').addEventListener('input', function() {
+        updateRecap('name', 'recap-name');
+    });
+
+    document.getElementById('firstname').addEventListener('input', function() {
+        updateRecap('firstname', 'recap-firstname');
+    });
+
+    document.getElementById('cin').addEventListener('input', function() {
+        updateRecap('cin', 'recap-cin');
+    });
+
+    document.getElementById('monthlyIncome').addEventListener('input', function() {
+        updateRecap('monthlyIncome', 'recap-monthly-income');
+    });
+
+    document.getElementsByName('has_credits').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const selected = document.querySelector('input[name="has_credits"]:checked');
+            document.getElementById('recap-credits').textContent = selected.value === 'true' ? 'oui' : 'non';
+        });
+    });
+
 
 </script>
 </body>

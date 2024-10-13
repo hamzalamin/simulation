@@ -375,4 +375,8 @@ input[type=range]::-moz-range-track {
     margin-left: 5px;
 }
 
+.recap-table th{
+    display: inline-grid;
+
+}
 /*# sourceMappingURL=style1.css.map */

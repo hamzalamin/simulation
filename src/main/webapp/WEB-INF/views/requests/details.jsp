@@ -10,50 +10,64 @@
 <html>
 <head>
     <title>Request Details</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/updateTable.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/details.css">
 </head>
 <body>
-<h1>Request Details</h1>
+<div class="container">
+    <h1>Request Details</h1>
+    <div class="request-info">
+        <h2>Project Id #${request.id}</h2>
+        <p>Project Name: ${request.projectName}</p>
+        <p>Client Type: ${request.userType}</p>
+        <p>Loan Amount: ${request.loanAmount}</p>
+        <p>Loan Duration: ${request.loanDuration}</p>
+        <p>Monthly Payment: ${request.monthlyPayment}</p>
+        <p>Client Email: ${request.email}</p>
+        <p>Client Phone: ${request.phone}</p>
+        <p>Civility: ${request.civility}</p>
+        <p>Client Name: ${request.fName} ${request.lName}</p>
+        <p>Client CIN: ${request.cin}</p>
+        <p>Birth Date: ${request.birthDate}</p>
+        <p>Employment Start Date: ${request.employmentStartDate}</p>
+        <p>Has Credits: ${request.hasCredits}</p>
+    </div>
 
-<p>Project Name: ${request.projectName}</p>
-<p>User Type: ${request.userType}</p>
-
-<h2>Update Status</h2>
-<form action="${pageContext.request.contextPath}/request/status" method="POST">
-    <input type="hidden" name="requestId" value="${request.id}"/>
-    <input type="hidden" name="action" value="create"/>
-    <label for="status">Select Status:</label>
-    <select id="status" name="statusId" required>
-        <c:forEach var="status" items="${status}">
-            <option value="${status.id}">${status.status}</option>
-        </c:forEach>
-    </select><br/>
-    <label for="status">Status Description:</label>
-    <input type="text" name="description" id="description" class="description">
-
-    <input type="submit" value="Create Status"/>
-</form>
-
-<h2>Historique</h2>
-<table border="1">
-    <thead>
-    <tr>
-        <th>project name</th>
-        <th>Status</th>
-        <th>Status description</th>
-        <th>Date</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach var="requestStatus" items="${requestStatusList}">
-        <tr>
-            <td>${requestStatus.request.projectName}</td>
-            <td>${requestStatus.status.status}</td>
-            <td>${requestStatus.description}</td>
-            <td>${requestStatus.date}</td>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
+    <div class="status-form">
+        <h3>Update Status</h3>
+        <form action="${pageContext.request.contextPath}/request/status" method="POST">
+            <input type="hidden" name="requestId" value="${request.id}"/>
+            <input type="hidden" name="action" value="create"/>
+            <select id="statusSelect" name="statusId">
+                <option value="Open">Open</option>
+                <c:forEach var="status" items="${status}">
+                    <option value="${status.id}">${status.status}</option>
+                </c:forEach>
+            </select>
+            <textarea id="statusDescription" name="description" placeholder="Status description" rows="4"></textarea>
+            <input type="submit" value="New Status"/>
+        </form>
+    </div>
+    <div class="status-history">
+        <h3>Status History</h3>
+        <table id="statusTable">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody id="statusList">
+            <c:forEach var="requestStatus" items="${requestStatusList}">
+                <tr>
+                    <td>${requestStatus.status.status}</td>
+                    <td>${requestStatus.description}</td>
+                    <td>${requestStatus.date}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>
